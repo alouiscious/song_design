@@ -3,6 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable,  and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
-  has_many :songs
-  has_many :song_notes, through: :songs
+  # has_many :songs
+  # has_many :song_notes, through: :songs
 end
