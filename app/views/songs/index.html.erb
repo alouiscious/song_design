@@ -1,0 +1,9 @@
+<h1>Songs</h1>
+<% @songs.each do |song| %>
+  <%= song.title %><br> 
+  <%= song.genre %><br>
+  <%= song.key %><br>
+  <%= song.in_style_of %><br>
+  <%= song.status %>
+  
+<% end %>
