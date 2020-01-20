@@ -1,5 +1,7 @@
 class SongsController < ApplicationController
 
+  before_action :authenticate_user!
+  
   def index
     @songs = Song.all
   end
@@ -33,6 +35,6 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    require.params(:song).permit(:title, :genre, :key, :in_style_of)
+    require.params(:song).permit(:title, :genre, :key, :in_style_of, :musician_id, :rehearsal_id)
   end  
 end
