@@ -10,6 +10,20 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to 'Musicians', musicians_path %> 
+      <%= link_to 'Rehearsals', rehearsals_path %> 
+      <%= link_to 'Songs', songs_path %> 
+      <% if user_signed_in? %>
+        <%= link_to  "Sign In", new_user_session_path %>
+        <%= link_to "Sign Up", new_user_registration_path %>
+      <% else %>
+        <%= button_to "Sign Out", destroy_user_session_path, {method: 'delete'} %>
+      <% end %>
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+      
     <%= yield %>
-  </body>
+</body>
 </html>
