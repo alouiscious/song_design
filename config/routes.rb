@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :songs
   resources :song_notes
 
-  # get 'rehearsals/index'
+  get 'rehearsals/index'
   root to: 'rehearsals#index'
 
 end
