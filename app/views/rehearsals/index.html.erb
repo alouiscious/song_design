@@ -1,3 +1,4 @@
+<!--
 <% @rehearsals.each do |rehearsal| %>
   <%= rehearsal.location %> <br>
   <%= rehearsal.city %> <br>
@@ -7,4 +8,7 @@
 <br>
 <br>
 <% end %>
+-->
+
+<%= render(@rehearsals) || "There's no rehearsals available." %>
 

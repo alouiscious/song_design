@@ -1,5 +1,9 @@
 class Song < ApplicationRecord
-  has_many :song_notes
-  belongs_to :rehearsal
-  belongs_to :musician
+	has_many :songnotes
+	has_many :rehearsals, through: :songnotes
+  belong_to :user
+  
+  validates :title, :key, presence: true
+  # validates :title, uniquiness: true
+
 end

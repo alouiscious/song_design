@@ -1,0 +1,11 @@
+<h1>User</h1>
+
+<%= form_for :user do |f| %>
+  <%= text_field f.name %>
+  <%= text_field f.city %>
+  <%= text_field f.phone %>
+  <%= text_field f.email %>
+  <%= text_field f.instrument %>
+  <%= f.submit %>
+  
+<% end %>

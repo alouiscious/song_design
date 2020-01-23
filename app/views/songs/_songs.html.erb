@@ -1,0 +1,31 @@
+<!--
+  create_table "songs", force: :cascade do |t|
+    t.string "title"
+    t.string "genre"
+    t.string "key"
+    t.string "in_style_of"
+    t.boolean "status"
+    t.integer "rehearsal_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_songs_on_user_id"
+    t.index ["rehearsal_id"], name: "index_songs_on_rehearsal_id"
+  end
+-->
+
+<h1>Songs List</h1>
+<% @songs.each do |song| %>
+  <%= song.title %> <br>
+  <%= song.genre %> <br>
+  <%= song.key %> <br>
+  <%= song.in_style_of %> <br>
+  <%= song.status %> <br>
+  <% song.songnotes.each do |note| %>
+    <%= note.title %>
+    <%= note.content %>
+    <%= note.type %>
+  <% end %>
+<br>
+<br>
+<% end %>
