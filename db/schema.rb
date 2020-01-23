@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_041451) do
-
-  create_table "musicians", force: :cascade do |t|
-    t.string "name"
-    t.string "city"
-    t.string "email"
-    t.integer "phone"
-    t.string "instrument"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2020_01_21_145408) do
 
   create_table "rehearsals", force: :cascade do |t|
     t.string "location"
@@ -32,14 +22,14 @@ ActiveRecord::Schema.define(version: 2020_01_20_041451) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "song_notes", force: :cascade do |t|
+  create_table "songnotes", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "type"
     t.integer "song_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["song_id"], name: "index_song_notes_on_song_id"
+    t.index ["song_id"], name: "index_songnotes_on_song_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -49,14 +39,21 @@ ActiveRecord::Schema.define(version: 2020_01_20_041451) do
     t.string "in_style_of"
     t.boolean "status"
     t.integer "rehearsal_id"
-    t.integer "musician_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["musician_id"], name: "index_songs_on_musician_id"
+    t.index ["user_id"], name: "index_songs_on_user_id"
     t.index ["rehearsal_id"], name: "index_songs_on_rehearsal_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "city"
+    t.string "email"
+    t.integer "phone"
+    t.string "instrument"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false    
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -69,6 +66,8 @@ ActiveRecord::Schema.define(version: 2020_01_20_041451) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
