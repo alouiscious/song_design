@@ -35,7 +35,7 @@ Things you may want to cover:
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
-  Counter caches set for songs, musicians, song_notes.
+  Counter caches set for songs, users, songnotes.
   rt.
 
   Rails authentication useing the Devise gem.
@@ -49,6 +49,7 @@ Things you may want to cover:
 
   Routes: Use a helper that devise gives us to mount the routes within config/routes.rd (devise_for :users)
 
+there are two destroy user session commands in the routes.rb and the applicationmhtml.erb layout. i commented out the routes command. does the routes.rb one control a destroy command for github auth, and the application.html control the destroy command for devise???
 * Deployment instructions
 
 * ...

@@ -6,17 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+User.destroy_all
 28.times do
-  Musician.create(name: Faker::Name.unique.name, city: Faker::Address.city, email: Faker::Internet.email, phone: Faker::PhoneNumber.phone_number, instrument: Faker::Music.instrument)
+  User.create(name: Faker::Name.unique.name, city: Faker::Address.city, email: Faker::Internet.email, phone: Faker::PhoneNumber.phone_number, instrument: Faker::Music.instrument)
 end
 
 10.times do
   Rehearsal.create(location: 'Studio 9030', city: Faker::Address.city, purpose: "New Material", date: Faker::Date.between(from: 1.years.ago, to: Date.today), time: Faker::Time.forward(days: 180, period: :evening))
-  Rehearsal.create(location: 'BoomBah', city: Faker::Address.city, purpose: "New Musician", date: Faker::Date.forward(days: 180), time: Faker::Time.forward(days: 180, period: :evening))
+  Rehearsal.create(location: 'BoomBah', city: Faker::Address.city, purpose: "New User", date: Faker::Date.forward(days: 180), time: Faker::Time.forward(days: 180, period: :evening))
   Rehearsal.create(location: 'Toast', city: Faker::Address.city, purpose: "Special Event", date: Faker::Date.between(from: 1.years.ago, to: Date.today), time: Faker::Time.forward(days: 180, period: :evening))
   Rehearsal.create(location: 'Northern Stars', city: Faker::Address.city, purpose: "Venue setup", date: Faker::Date.forward(days: 180), time: Faker::Time.forward(days: 180, period: :evening))
+end
 
+40.times do
+  Song.create(title: Faker::Beer.name, genre: Faker::Music.genre, key: Faker::Music.key,)
 end
 
 
