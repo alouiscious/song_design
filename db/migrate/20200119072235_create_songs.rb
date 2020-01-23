@@ -7,7 +7,7 @@ class CreateSongs < ActiveRecord::Migration[6.0]
       t.string :in_style_of
       t.boolean :status
       t.belongs_to :rehearsal, counter_cache: true
-      t.belongs_to :musician, counter_cache: true
+      t.belongs_to :user, counter_cache: true
 
       t.timestamps null: false
     end
