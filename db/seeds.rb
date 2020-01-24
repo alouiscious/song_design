@@ -6,8 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.destroy_all
-28.times do
+# User.destroy_all
+# Rehearsal.destroy_all
+# Song.destroy_all
+
+10.times do
   User.create(name: Faker::Name.unique.name, city: Faker::Address.city, email: Faker::Internet.email, phone: Faker::PhoneNumber.phone_number, instrument: Faker::Music.instrument)
 end
 
@@ -18,8 +21,8 @@ end
   Rehearsal.create(location: 'Northern Stars', city: Faker::Address.city, purpose: "Venue setup", date: Faker::Date.forward(days: 180), time: Faker::Time.forward(days: 180, period: :evening))
 end
 
-40.times do
-  Song.create(title: Faker::Beer.name, genre: Faker::Music.genre, key: Faker::Music.key,)
+10.times do
+  Song.create(title: Faker::Beer.name, genre: Faker::Music.genre, key: Faker::Music.key, in_style_of: Faker::Music.band, status: 'true')
 end
 
 

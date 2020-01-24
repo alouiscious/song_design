@@ -22,14 +22,14 @@ ActiveRecord::Schema.define(version: 2020_01_21_145408) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "songnotes", force: :cascade do |t|
+  create_table "song_notes", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "type"
     t.integer "song_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["song_id"], name: "index_songnotes_on_song_id"
+    t.index ["song_id"], name: "index_song_notes_on_song_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -42,18 +42,15 @@ ActiveRecord::Schema.define(version: 2020_01_21_145408) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_songs_on_user_id"
     t.index ["rehearsal_id"], name: "index_songs_on_rehearsal_id"
+    t.index ["user_id"], name: "index_songs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "city"
-    t.string "email"
     t.integer "phone"
     t.string "instrument"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false    
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

@@ -6,9 +6,11 @@ class User < ApplicationRecord
 
   has_many :user_rehearsals
   has_many :rehearsals, through: :user_rehearsals
-  has_many :organized_rehearsals, class_name: ‘Rehearsal’, foreign_key: :organizer_id
+  has_many :organized_rehearsals, class_name: "Rehearsal", foreign_key: :organizer_id
   has_many :songs_to_rehearse, through: :rehearsals, source: :song
-  has_many :songs         
+  has_many :songs
+
+  # validates :email, uniqueness: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

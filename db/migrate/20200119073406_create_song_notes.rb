@@ -1,6 +1,6 @@
 class CreateSongNotes < ActiveRecord::Migration[6.0]
   def change
-    create_table :songnotes do |t|
+    create_table :song_notes do |t|
       t.string :title
       t.text :content
       t.string :type
