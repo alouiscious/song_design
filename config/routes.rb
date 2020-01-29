@@ -4,12 +4,15 @@ Rails.application.routes.draw do
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
   resources :rehearsals do
+    resources :users, only: [:index, :show]
+    resources :songs, only: [:index, :show]
+  end 
+
+  resources :song do
     resources :songnotes, only: [:index, :show]
-
   end
-
   
   resources :rehearsals
   resources :users
