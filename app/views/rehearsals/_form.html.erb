@@ -1,0 +1,16 @@
+
+<%= form_for(@rehearsal) do |f| %>
+  <%= f.label :location %>
+  <%= f.text_field :location %> <br>
+  <%= f.label :city %>
+  <%= f.text_field :city %> <br>
+  <%= f.label :purpose %>
+  <%= f.text_field :purpose %> <br>  
+  <%= f.label :date %>
+  <%= f.text_field :date %> <br>  
+  <%= f.label :time %>
+  <%= f.text_field :time %> <br>  
+  
+<br>
+<%= f.submit %>
+<% end %>
