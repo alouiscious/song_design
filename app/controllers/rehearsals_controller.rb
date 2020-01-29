@@ -3,7 +3,16 @@ class RehearsalsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @rehearsals = Rehearsal.all
+    if params[:songnotes_id]
+      @songnote = Rehearsal.find_by(params[:songnotes_id])
+      if @songnote.nil?
+        redirect_to rehearsals_songs_path
+      else
+        @rehearsals = @songnotes.rehearsals
+      end
+    else
+      @rehearsals = Rehearsal.all
+    end
   end
 
   def show
@@ -16,7 +25,11 @@ class RehearsalsController < ApplicationController
 
   def create
     @rehearsal = Rehearsal.new(rehearsal_params)
-    @rehearsal.save
+    if  @rehearsal.save
+      redirect_to @rehearsal
+    else
+      render :new
+    end
   end
 
   def edit
@@ -24,11 +37,21 @@ class RehearsalsController < ApplicationController
   end
 
   def update
+    @rehearsal = Rehearsal.find(params[:id])
     @rehearsal = Rehearsal.update(rehearsal_params)
+
+    if @rehearsal.save
+      redirect_to @rehearsal
+    else
+      render :edit
+    end
   end
 
   def delete
-
+    @rehearsal = Rehearsal.find(params[:id])
+    @rehearsal.destroy
+    flash[:notice] = "Rehearsal Deleted"
+    redirect_to rehearsals_path
   end
 
   def rehearsal_params

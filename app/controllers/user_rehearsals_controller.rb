@@ -1,0 +1,2 @@
+class UserRehearsalsController < ApplicationController
+end
