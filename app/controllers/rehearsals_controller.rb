@@ -55,6 +55,6 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    require.params(:rehearsal).permit(:location, :city, :purpose, :date, :time)
+    require.params(:rehearsal).permit(:location, :city, :purpose, :date, :time, :song_ids, :songnote_ids)
   end
 end

@@ -2,39 +2,39 @@ class SongNotesController < ApplicationController
   
   before_action :authenticate_user!
   
-  # def index
-  #   @songnotes = SongNote.all
-  # end
+  def index
+    @songnotes = SongNote.all
+  end
 
-  # def show
-  #   songnote = SongNote.find(songnote_params)
-  # end
+  def show
+    songnote = SongNote.find(songnote_params)
+  end
 
-  # def new
-  #   songnote = SongNote.new
-  # end
+  def new
+    songnote = SongNote.new
+  end
 
-  # def create
-  #   songnote = SongNote.new(songnote_params)
-  #   songnote.save
+  def create
+    songnote = SongNote.new(songnote_params)
+    songnote.save
 
-  # end
+  end
 
-  # def edit
-  #   songnote = SongNote.find([:id])
+  def edit
+    songnote = SongNote.find([:id])
 
-  # end
+  end
 
-  # def update
-  #   songnote = SongNote.update(songnote_params)
+  def update
+    songnote = SongNote.update(songnote_params)
 
-  # end
+  end
 
-  # def delete
+  def delete
 
-  # end
+  end
 
-  # def songnote_params
-  #   require.params(:songnote).permit(:title, :content, :type, :song_id)
-  # end  
+  def songnote_params
+    require.params(:songnote).permit(:title, :content, :type, :song_id)
+  end  
 end

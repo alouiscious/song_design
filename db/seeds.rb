@@ -16,17 +16,19 @@ end
 
 puts "#{User.count} users created" 
 
-10.times do |i|
+1.times do |i|
   User.all[i].organized_rehearsals.create(location: 'Studio 9030', city: Faker::Address.city, purpose: "New Material", date: Faker::Date.between(from: 1.years.ago, to: Date.today), time: Faker::Time.forward(days: 180, period: :evening))
   User.all[i].organized_rehearsals.create(location: 'BoomBah', city: Faker::Address.city, purpose: "New User", date: Faker::Date.forward(days: 180), time: Faker::Time.forward(days: 180, period: :evening))
   User.all[i].organized_rehearsals.create(location: 'Toast', city: Faker::Address.city, purpose: "Special Event", date: Faker::Date.between(from: 1.years.ago, to: Date.today), time: Faker::Time.forward(days: 180, period: :evening))
   User.all[i].organized_rehearsals.create(location: 'Northern Stars', city: Faker::Address.city, purpose: "Venue setup", date: Faker::Date.forward(days: 180), time: Faker::Time.forward(days: 180, period: :evening))
 end
+puts "#{Rehearsal.count} rehearsals created" 
+
 
 10.times do |i|
   User.all[i].songs.create(title: Faker::Beer.name, genre: Faker::Music.genre, key: Faker::Music.key, in_style_of: Faker::Music.band, status: 'true')
 end
-
+puts "#{Song.count} songs created" 
 
 # Rehearsal.all.each_with_index do |rehearsal, i|
 #   rehearsal.students << [Musician.limit(8).offset(i*2)]

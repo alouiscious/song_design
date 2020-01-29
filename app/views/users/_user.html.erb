@@ -1,0 +1,27 @@
+<table>
+
+  <th>
+    <ul>
+      <li><%= user.name %> </li>
+  </th>
+  <tr>
+      <%= user.city %> <br>
+      <%= user.email %> <br>
+      <%= user.phone %> <br>
+      <%= user.instrument %>
+    <br>
+    <br>
+    </ul>
+</tr>
+
+  <th>
+  Rehearsals: TODO show active status
+  </th>
+<tr>
+  <% @user.user_rehearsals.each do |rehearsal| %>
+  TODO show assigned user_rehearsal <br>
+  TODO <%= link_to rehearsal, rehearsal_user_path %>
+  <% end %>
+</tr>   
+
+</table>
