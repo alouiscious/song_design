@@ -2,7 +2,16 @@ class UsersController < ApplicationController
   
   before_action :authenticate_user!
   def index
-    @users = User.all
+    if params[:songnote_id]
+      @songnote = User.find_by(params[:songnote_id])
+      if @songnote.nil
+        redirect_to users_songnotes_path
+      else
+        @user = @songnotes.users
+      end
+    else
+      @users = User.all
+    end
   end
 
   def show
@@ -15,7 +24,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
+    if @user.save
+      redirect_to @user
+    else
+      render :new
+    end
   end
 
   def edit
@@ -33,7 +46,9 @@ class UsersController < ApplicationController
   end
 
   def delete
-
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = "User Deleted"
   end
 
   def user_params

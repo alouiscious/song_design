@@ -3,10 +3,10 @@ class RehearsalsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    if params[:songnotes_id]
-      @songnote = Rehearsal.find_by(params[:songnotes_id])
+    if params[:songnote_id]
+      @songnote = Rehearsal.find_by(params[:songnote_id])
       if @songnote.nil?
-        redirect_to rehearsals_songs_path
+        redirect_to rehearsals_songnotes_path
       else
         @rehearsals = @songnotes.rehearsals
       end
