@@ -1,10 +1,10 @@
 
 <% @rehearsals.each do |rehearsal| %>
-  <%= rehearsal.location %> <br>
+  <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> | <%= rehearsal.date %> TODO %A %b %e <br>
+  <%= rehearsal.time  %> TODO %l %p
   <%= rehearsal.city %> <br>
   <%= rehearsal.purpose %> <br>
-  <%= rehearsal.date %> <br>
-  <%= rehearsal.time %>
+  Organized by: <%= rehearsal.organizer_id %>
 <br>
 <br>
 <% end %>

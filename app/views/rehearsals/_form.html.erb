@@ -10,6 +10,7 @@
   <%= select_date Date.today, prefix: :date %> <br>  
   <%= f.label :time %>
   <%= select_hour Time.now, prefix:  :time %> <br>  
+  <%= f.collection_check_boxes :song_ids, Song.all, :id, :title %>
 
 <br>
 
@@ -18,3 +19,4 @@
 
 <%= f.submit %>
 <% end %>
+

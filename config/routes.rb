@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :rehearsals
   resources :users
   resources :songs
-  resources :songnotes
+  resources :songnotes, only: [:index, :show, :new, :create, :edit, :update]
   resources :userrehearsal
 
   get 'rehearsals/index'

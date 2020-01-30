@@ -1,7 +1,20 @@
 class SongsController < ApplicationController
 
   before_action :authenticate_user!
+  def songnotes_index
+    @song = Song.find(params[:id])
+    @songnotes = @song.songnotes
+    render template: 'songnotes/index'
+  end
   
+  def songnote
+    @song = Song.find(params[:id]) 
+    # Because ids are unique by table, we can go directly to
+    # Songnote.find (no need for @song.songnotes.find).
+    @songnote = Songnote.find(params[:songnote_id])
+    render template: 'songnotes/show'
+  end
+
   def index
     if params[:songnote_id]
       @songnote = Song.find_by(params[:songnote_id])
@@ -16,7 +29,7 @@ class SongsController < ApplicationController
   end
 
   def show
-    @song = Song.find(song_params)
+    @song = Song.find(params[:id])
   end
 
   def new
@@ -54,12 +67,6 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    params.require(:song).permit(:title, :genre, :key, :in_style_of, :user_id, :rehearsal_id,
-      songnotes_attributes:[
-        :title,
-        :content,
-        :type
-      ]
-    )
+    params.require(:song).permit(:title, :genre, :key, :in_style_of, :user_id, :rehearsal_id)
   end  
 end

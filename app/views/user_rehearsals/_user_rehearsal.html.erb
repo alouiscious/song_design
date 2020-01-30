@@ -1,6 +1,11 @@
 
 
 
+
+
+
+
+
 <table>
 
   <th>
@@ -14,6 +19,16 @@
       <%= user.instrument %>
     <br>
     <br>
+    <li><%= rehearsal.location %></li>
+    <ol>
+    <% rehearsal.songs.each do |song| %>
+      <li><%= song.title %> </li><br>
+          <%= song.genre %> <br>
+          <%= song.key %> <br>
+          <%= song.in_style_of %> <br>
+          In design: <%= song.status %> <br>
+      
+    </ol>
     </ul>
 </tr>
 

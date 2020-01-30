@@ -1,0 +1,16 @@
+
+<h1>Add a Song for Design</h1>
+<%= form_for @song do |f| %>
+  TODO find or create song title
+  <%= f.title %> <br>
+  <%= f.genre %> <br>
+  <%= f.key %> <br>
+  <%= f.in_style_of %> <br>
+  In design: <%= f.status %> <br>
+
+  <%= f.fields_for :songnote, Song.SongNote.all, :id, :title %>
+  <% f.submit %>
+<% end %>
+<br>
+<br>
+

@@ -1,16 +1,18 @@
-<!--
-<% @rehearsals.each do |rehearsal| %>
-  <%= rehearsal.location %> <br>
-  <%= rehearsal.city %> <br>
-  <%= rehearsal.purpose %> <br>
-  <%= rehearsal.date %> <br>
-  <%= rehearsal.time %>
-<br>
-<br>
-<% end %>
--->
-<h1>Rehearsals</h1>
+<table>
+<tr>
+  <td>
+    <h1>Rehearsals - </h1>
+  </td>
+  <td>
+    <h4><%= link_to "Create a new rehearsal", new_user_rehearsal_path %></h4>
+  </td>
+</tr>
 
-<%= render(@rehearsals) || "There's no rehearsals available." %>
+<tr>
+  <td>
+    <%= render(@rehearsals) || "There's no rehearsals available." %>
+  </td>
+</tr>
 
-<%= link_to "Create a new rehearsal", new_user_rehearsal_path %>
+
+</table>

@@ -3,16 +3,17 @@ class RehearsalsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    if params[:songnote_id]
-      @songnote = Rehearsal.find_by(params[:songnote_id])
-      if @songnote.nil?
-        redirect_to rehearsals_songnotes_path
-      else
-        @rehearsals = @songnotes.rehearsals
-      end
-    else
-      @rehearsals = Rehearsal.all
-    end
+    @rehearsals = Rehearsal.all
+    # if params[:songnote_id]
+    #   @songnote = Rehearsal.find_by(params[:songnote_id])
+    #   if @songnote.nil?
+    #     redirect_to rehearsals_songnotes_path
+    #   else
+    #     @rehearsals = @songnotes.rehearsals
+    #   end
+    # else
+    #   @rehearsals = Rehearsal.all
+    # end
   end
 
   def show
@@ -55,6 +56,6 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    require.params(:rehearsal).permit(:location, :city, :purpose, :date, :time, :song_ids, :songnote_ids)
+    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time, song_ids:[])
   end
 end

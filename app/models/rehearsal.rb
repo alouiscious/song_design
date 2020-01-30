@@ -11,13 +11,20 @@ class Rehearsal < ApplicationRecord
 			where(song: song_id)
 		end
 	
-		# Filtering for recent or old
-		def self.from_today
+		def self.future
 			where("created_at >=?", Time.zone.today.beginning_of_day)
 		end
 	
-		def self.old_news
+		def self.past
 			where("created_at <?", Time.zone.today.beginning_of_day)
+		end
+	
+		def self.by_user(user_id)
+			where(user: user_id)
+		end
+	
+		def self.by_location(location)
+			where(location: location)
 		end
 
 end

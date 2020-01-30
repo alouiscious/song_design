@@ -3,11 +3,15 @@ class SongNotesController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @songnotes = SongNote.all
+    if params[:song_id]
+      @songnotes = Song.find(paramas[:song_id]).songnotes
+    else
+      @songnotes = SongNote.all
+    end
   end
 
   def show
-    songnote = SongNote.find(songnote_params)
+    songnote = SongNote.find(params[:id])
   end
 
   def new
@@ -35,6 +39,8 @@ class SongNotesController < ApplicationController
   end
 
   def songnote_params
-    require.params(:songnote).permit(:title, :content, :type, :song_id)
+    params.require(:songnote).permit(:title, :content, :type)
+    # params.require(:rehearsal).permit(:location, :date, :time, :purpose, song_ids:[], song_attributes: [:title])
+
   end  
 end

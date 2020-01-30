@@ -1,1 +1,13 @@
-<%= render(@songs) %>
+
+<% @song.each do |detail| %>
+<ul> 
+  <li><%= link_to detail.title, song_path(song) %> <br>
+
+  <%= detail.genre %> <br>
+  <%= detail.key %> <br>
+  <%= detail.in_style_of %> <br>
+  In design: <%= detail.status %> <br>
+  </li>
+ 
+</ul>
+<% end %>

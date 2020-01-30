@@ -11,6 +11,7 @@
 
 <h1>Song Notes</h1>
 <% @songnotes.each do |songnote| %>
+  <%= link_to songnote.song.title, song_songnotes_path(songnote.song) %>
   <%= songnote.title %> <br>
   <%= songnote.content %> <br>
   <%= songnote.type %> <br>

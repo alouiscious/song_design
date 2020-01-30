@@ -1,11 +1,13 @@
 
 <% @songs.each do |song| %>
-  <%= song.title %> <br>
+<ul> 
+  <li><%= link_to song.title, song_path(song) %> <br>
+
   <%= song.genre %> <br>
   <%= song.key %> <br>
   <%= song.in_style_of %> <br>
   In design: <%= song.status %> <br>
-
-<br>
-<br>
+  </li>
+ 
+</ul>
 <% end %>
