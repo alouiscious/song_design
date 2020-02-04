@@ -18,7 +18,6 @@ class RehearsalsController < ApplicationController
 
   def show
     @rehearsal = Rehearsal.find(params[:id])
-    # @user = User.find_by(rehearsal_params)
   end
 
   def new
@@ -26,12 +25,13 @@ class RehearsalsController < ApplicationController
   end
 
   def create
-    @rehearsal = Rehearsal.new(rehearsal_params)
-    if  @rehearsal.save
-      redirect_to @rehearsal
-    else
-      render :new
-    end
+    # @rehearsal = Rehearsal.new(rehearsal_params) no foreign key is assigned.
+    @rehearsal = current_user.rehearsals.build(rehearsal_params) # the foreign key is now assigned
+      if  @rehearsal.save
+        redirect_to @rehearsal
+      else
+        render :new
+      end
   end
 
   def edit
@@ -40,7 +40,7 @@ class RehearsalsController < ApplicationController
 
   def update
     @rehearsal = Rehearsal.find(params[:id])
-    @rehearsal = Rehearsal.update(rehearsal_params)
+    @rehearsal = @rehearsal.update(rehearsal_params)
 
     if @rehearsal.save
       redirect_to @rehearsal
@@ -57,6 +57,6 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time, user: :user_id, song_ids:[])
+    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time, song_ids:[])
   end
 end
