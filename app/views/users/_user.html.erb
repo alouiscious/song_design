@@ -3,23 +3,22 @@
 
 <table>
 
+  <tr>
   <th>
     <ul>
-      <li><%= user.name %> </li>
+      <li><%= link_to user.name, user_rehearsals_path(user) %> </li>
   </th>
+  
   <tr>
-      <%= user.city %> <br>
-      <%= user.email %> <br>
-      <%= user.phone %> <br>
-      <%= user.instrument %>
-    <br>
-    <br>
+      <%= "Hometown: " %><%= user.city %> <br>
+      <%= "Email: " %><%= user.email %> <br>
+      <%= "Phone: " %><%= user.phone %> <br>
+      <strong><%= user.instrument %></strong><br>
+      Rehearsals: TODO show active status<br>
     </ul>
-</tr>
+  </tr> 
 
-  <th>
-  Rehearsals: TODO show active status
-  </th>
+ 
 <tr>
   TODO show assigned user_rehearsal <br>
   TODO  link_to @rehearsal, rehearsal_user_path 

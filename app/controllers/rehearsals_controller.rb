@@ -18,6 +18,7 @@ class RehearsalsController < ApplicationController
 
   def show
     @rehearsal = Rehearsal.find(params[:id])
+    # @user = User.find(params[:organizer_id])
   end
 
   def new

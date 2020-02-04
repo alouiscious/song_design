@@ -16,7 +16,7 @@ end
 
 puts "#{User.count} users created" 
 
-1.times do |i|
+10.times do |i|
   User.all[i].organized_rehearsals.create(location: 'Studio 9030', city: Faker::Address.city, purpose: "New Material", date: Faker::Date.between(from: 1.years.ago, to: Date.today), time: Faker::Time.forward(days: 180, period: :evening))
   User.all[i].organized_rehearsals.create(location: 'BoomBah', city: Faker::Address.city, purpose: "New User", date: Faker::Date.forward(days: 180), time: Faker::Time.forward(days: 180, period: :evening))
   User.all[i].organized_rehearsals.create(location: 'Toast', city: Faker::Address.city, purpose: "Special Event", date: Faker::Date.between(from: 1.years.ago, to: Date.today), time: Faker::Time.forward(days: 180, period: :evening))

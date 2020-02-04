@@ -4,13 +4,17 @@
     <h1>Rehearsals - </h1>
   </td>
   <td>
-    <h4><%= link_to "Create a new rehearsal", new_user_rehearsal_path %></h4>
+    <h4><%= link_to "Create a new rehearsal", new_rehearsal_path %></h4>
   </td>
 </tr>
 
 <tr>
   <td>
-    <%= render(@rehearsals) || "There's no rehearsals available." %>
+    <% @rehearsals.each do |rehearsal| %>
+      <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> | <%= rehearsal.date %> TODO %A %b %e <br>  <%= rehearsal.time  %> TODO %l %p 
+    <br>
+    <br>  
+    <% end %>  
   </td>
 </tr>
 

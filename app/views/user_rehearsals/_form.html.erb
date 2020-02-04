@@ -1,2 +1,17 @@
 <h1>Your Rehearsals</h1>
 
+<%= form_for @rehearsal do |f| %>
+  <%= f.label :location %>
+  <%= f.location %>
+  <%= f.label :city %>
+  <%= f.city %>
+  <%= f.label :purpose %>
+  <%= f.purpose %>
+  <%= f.label :date %>
+  <%= f.select_date Date.today, prefix: :date %> <br>  
+  <%= f.label :time %>
+  <%= f.select_hour Time.now, prefix:  :time %> <br>  
+  <%= f.collection_check_boxes :song_ids, Song.all, :id, :title %>
+  <%= display_name(song, path) %>
+
+<% end %>

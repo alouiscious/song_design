@@ -1,4 +1,5 @@
 
+
 <%= form_for @rehearsal do |f| %>
   <%= f.label :location %>
   <%= f.collection_select :location, Rehearsal.all, :id, :location %> <br> 
@@ -10,13 +11,11 @@
   <%= select_date Date.today, prefix: :date %> <br>  
   <%= f.label :time %>
   <%= select_hour Time.now, prefix:  :time %> <br>  
-  <%= f.collection_check_boxes :song_ids, Song.all, :id, :title %>
+  Organized by: <%= f.text_field :organizer_id %>
 
 <br>
+<br>
 
-
-
-
-<%= f.submit %>
+<%= f.submit %> 
 <% end %>
 

@@ -1,11 +1,22 @@
 
-<% @rehearsals.each do |rehearsal| %>
-  <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> | <%= rehearsal.date %> TODO %A %b %e <br>
-  <%= rehearsal.time  %> TODO %l %p
-  <%= rehearsal.city %> <br>
-  <%= rehearsal.purpose %> <br>
-  Organized by: <%= rehearsal.organizer_id %>
+
+<%= form_for @rehearsal do |f| %>
+  <%= f.label :location %>
+  <%= f.collection_select :location, Rehearsal.all, :id, :location %> <br> 
+  <%= f.label :city %>
+  <%= f.text_field :city %> <br>
+  <%= f.label :purpose %>
+  <%= f.collection_select :purpose, Rehearsal.all, :id, :purpose %> <br> 
+  <%= f.label :date %>
+  <%= select_date Date.today, prefix: :date %> <br>  
+  <%= f.label :time %>
+  <%= select_hour Time.now, prefix:  :time %> <br>  
+  Organized by: <%= f.text_field :organizer_id %>
+
 <br>
 <br>
+
+<%= f.submit %> 
 <% end %>
+
 
