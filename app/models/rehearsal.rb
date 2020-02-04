@@ -19,12 +19,16 @@ class Rehearsal < ApplicationRecord
 			where("created_at <?", Time.zone.today.beginning_of_day)
 		end
 	
-		def self.by_user(user_id)
-			where(user: user_id)
+		def self.by_user(organizer_id)
+			where(user: organizer_id)
 		end
 	
 		def self.by_location(location)
 			where(location: location)
 		end
 
+		# def self.display_name(organizer_id)
+		# 	where(user: organizer_id)
+		# end
+			
 end

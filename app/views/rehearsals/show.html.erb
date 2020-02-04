@@ -3,7 +3,7 @@
   <%= link_to @rehearsal.location, edit_rehearsal_path(@rehearsal) %> | <%= @rehearsal.date %> TODO %A %b %e <br>  <%= @rehearsal.time  %> TODO %l %p
   <%= @rehearsal.city %> <br>
   <%= @rehearsal.purpose %> <br>
-  Organized by: <%= @rehearsal.organizer_id %> <%= @user.name %>
+  Organized by: <%= @rehearsal.organizer_id %> <%=  %>
 <br>
 <br>
 <%= link_to "Go to ALL Rehearsals", rehearsals_path %>

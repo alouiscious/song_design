@@ -3,7 +3,3 @@
 #   song.title
 # end
 
-# def self.organizer_name
-#   name = @rehearsal_organizer_id.name
-#   puts name
-# end

@@ -18,7 +18,7 @@ class RehearsalsController < ApplicationController
 
   def show
     @rehearsal = Rehearsal.find(params[:id])
-    # @user = User.find(params[:organizer_id])
+    # @user = User.find_by(rehearsal_params)
   end
 
   def new
@@ -57,6 +57,6 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time, song_ids:[])
+    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time, user: :user_id, song_ids:[])
   end
 end
