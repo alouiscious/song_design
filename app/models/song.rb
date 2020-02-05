@@ -15,4 +15,14 @@ class Song < ApplicationRecord
     self.musician = musician
   end
 
+  def songnotes_attributes=(content)
+    content.each do |id|
+      note = Songnote.find(id)
+      self.songnotes << note
+    end
+  end
+  
+  def songnotes_attributes
+    self.songnotes_attributes.try(:content)
+  end  
 end
