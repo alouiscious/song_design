@@ -14,7 +14,4 @@ class UserRehearsal < ApplicationRecord
     where(user: user_id)
   end
 
-  def self.by_location(location)
-    where(location: location)
-  end
 end

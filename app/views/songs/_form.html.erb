@@ -8,7 +8,8 @@
   <%= f.in_style_of %> <br>
   In design: <%= f.status %> <br>
 
-  <%= f.fields_for :songnote, Song.SongNote.all, :id, :title %>
+  <h3>Song Notes</h3>
+  <%= f.fields_for :songnote, Song.Songnote.all, :id, :title %>
   <% f.submit %>
 <% end %>
 <br>
