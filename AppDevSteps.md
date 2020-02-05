@@ -4,6 +4,10 @@ This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
+  make sure you have a scope method
+  user submittal
+  nested resources
+  attribute on the join model
 
 * Ruby version
     Ruby 2.6.0  
@@ -11,7 +15,6 @@ Things you may want to cover:
 * System dependencies
   gems:
     faker
-    
     omniauth
     for devise
       bcrypt ~> 3.0
