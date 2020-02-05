@@ -1,2 +1,10 @@
 <h1>Songs List</h1>
-<%= render(@songs) || "There's no songs available." %>
+<% @songs.each do |song| %>
+<ul> 
+  <li><%= link_to song.title, song_path(song) %> <br>
+  <%= song.key %> <br>
+
+  </li>
+ 
+</ul>
+<% end %>

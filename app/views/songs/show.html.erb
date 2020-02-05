@@ -1,13 +1,5 @@
+<h1>Song Details and Notes</h1>
 
-<% @song.each do |detail| %>
-<ul> 
-  <li><%= link_to detail.title, song_path(song) %> <br>
 
-  <%= detail.genre %> <br>
-  <%= detail.key %> <br>
-  <%= detail.in_style_of %> <br>
-  In design: <%= detail.status %> <br>
-  </li>
- 
-</ul>
-<% end %>
+<%= render(@song) || "There's no songs available." %>
+<button><%=link_to "Edit Song Details", edit_song_path(@song)%></button>
