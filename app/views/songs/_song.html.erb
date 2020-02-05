@@ -1,13 +1,13 @@
 
-<% @songs.each do |song| %>
 <ul> 
-  <li><%= link_to song.title, song_path(song) %> <br>
+  <li><%= link_to @song.title, edit_song_path(@song) %> <br>
 
-  <%= song.genre %> <br>
-  <%= song.key %> <br>
-  <%= song.in_style_of %> <br>
-  In design: <%= song.status %> <br>
+  <%= @song.genre %> <br>
+  <%= @song.key %> <br>
+  <%= @song.in_style_of %> <br>
+  In design: <%= @song.status %> <br>
   </li>
  
 </ul>
-<% end %>
+
+

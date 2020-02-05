@@ -1,16 +1,34 @@
 
-<h1>Add a Song for Design</h1>
 <%= form_for @song do |f| %>
-  TODO find or create song title
-  <%= f.title %> <br>
-  <%= f.genre %> <br>
-  <%= f.key %> <br>
-  <%= f.in_style_of %> <br>
-  In design: <%= f.status %> <br>
-
-  <h3>Song Notes</h3>
-  <%= f.fields_for :songnote, Song.Songnote.all, :id, :title %>
-  <% f.submit %>
+  <%= f.label :title %>
+  <%= f.text_field :title %> <br>
+  <%= f.label :key %>
+  <%= f.text_field :key %> <br>
+  <%= f.label :genre %>
+  <%= f.text_field :genre %> <br>
+  <%= f.label :in_style_of %>
+  <%= f.text_field :in_style_of %> <br>
+  <table title=Song Status>
+    <td>
+      <%= f.radio_button(:status, "In Use") %>
+      <%= f.label(:status_yes, "Song's in use") %>
+    </td>
+    <td>
+      <%= f.radio_button(:status, "Not In Use") %> 
+      <%= f.label(:status_no, "Song's not in use") %>
+    </td>    
+  </table>
+  <h3><%= @song.title %>: Song Notes</h3>
+  <%= f.fields_for :songnotes do |content| %>
+    <%= content.text_area :content, rows: 7, cols: 28 %>
+    <%=  %>
+    <%=  %>
+  <% end %>
+  <br>
+  <br>
+    
+  
+  <%= f.submit %>
 <% end %>
 <br>
 <br>

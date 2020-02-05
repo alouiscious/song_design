@@ -41,7 +41,6 @@ class RehearsalsController < ApplicationController
   def update
     @rehearsal = Rehearsal.find(params[:id])
     @rehearsal = @rehearsal.update(rehearsal_params)
-
     if @rehearsal.save
       redirect_to @rehearsal
     else

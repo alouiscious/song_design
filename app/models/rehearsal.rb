@@ -5,6 +5,7 @@ class Rehearsal < ApplicationRecord
 	has_many :songs, -> {distinct}, through: :songnotes
 	belongs_to :organizer, class_name: 'User'
 	accepts_nested_attributes_for :songnotes 
+	
 	# adds songnotes attributes= has to belong to a song and has a song id.
 
 # we have an organizer_id foreign-key/column which makes an assumption about the sequel query and the items will get from the query.

@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
 
   before_action :authenticate_user!
+
   def songnotes_index
     @song = Song.find(params[:id])
     @songnotes = @song.songnotes
@@ -53,6 +54,7 @@ class SongsController < ApplicationController
   def update
     @song = Song.find(params[:id])
     @song = Song.update(song_params)
+    @song.save
     if @song.save
       redirect_to @song
     else

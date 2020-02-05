@@ -11,7 +11,7 @@
   <%= select_date Date.today, prefix: :date %> <br>  
   <%= f.label :time %>
   <%= select_hour Time.now, prefix:  :time %> <br>  
-  Organized by: <%= f.text_field :organizer_name%>
+  Organized by: <%= @rehearsal.organizer.name %>
 
 <br>
 <br>
