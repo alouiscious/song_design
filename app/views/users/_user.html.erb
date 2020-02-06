@@ -1,27 +1,22 @@
 
-
-
 <table>
+  <tr>
+    <ul>
+      <strong><li><%= link_to @user.name, edit_user_path(user) %> </li></strong>
+      <strong><%= @user.instrument %></strong><br>
+  </tr>
 
   <tr>
-  <th>
-    <ul>
-      <li><%= link_to user.name, user_rehearsals_path(user) %> </li>
-  </th>
-  
-  <tr>
-      <%= "Hometown: " %><%= user.city %> <br>
-      <%= "Email: " %><%= user.email %> <br>
-      <%= "Phone: " %><%= user.phone %> <br>
-      <strong><%= user.instrument %></strong><br>
-      Rehearsals: TODO show active status<br>
+      <%= "Hometown: " %><%= @user.city %> <br>
+      <%= "Email: " %><%= @user.email %> <br>
+      <%= "Phone: " %><%= @user.phone %> <br>
+      Rehearsals: 2TODO show active status<br>
     </ul>
   </tr> 
-
  
-<tr>
-  TODO show assigned user_rehearsal <br>
-  TODO  link_to @rehearsal, rehearsal_user_path 
-</tr>   
+  <tr>
+    TODO show assigned user_rehearsal <br>
+    TODO  link_to @rehearsal, rehearsal_user_path 
+  </tr>   
 
 </table>

@@ -7,15 +7,18 @@ class Songnote < ApplicationRecord
 	# many to many in use here. songnote is the join.
 	# for use when there is no simple association method to call
 	# current user by rehearsal
-	
-	def song_name
-		self.try(:song).try(:title)
+	# TODO -  ADD select options for songnote: :type   <!-- # <%= content.select_tag(:type, options_for_select([['Solo/Feature', 1],['Organizer Note', 2],['Design Note', 3]]) %> -->
+
+	def song_title=(title)
+		self.song = Song.find_or_create_by(title: title)
 	end
 
-	def song_name=(title)
-		title = Song.find_by(title: title)
-		self.title = title
+	def song_title
+		self.song ? self.song.title : nil
+		# self.try(:song).try(:title)
 	end
+
+
 	
 	private
 	def is_title_case
@@ -28,13 +31,13 @@ class Songnote < ApplicationRecord
 		self.title = self.title.titlecase
 	end
 	
-		def self.by_user
-			# takes in a user and return notes associted with the user
-		end
+		# def self.by_user
+		# 	# takes in a user and return notes associted with the user
+		# end
 	
-		def self.by_rehearsal(rehearsal)
-			# notes associted with a song from many rehearsal
-			# rehearsal show page iterates over Songs allows access to songnotes (song.songnotes.by_rehearsal(@rehearsal))
-			# the console command below would look like this - Songnote.by_rehearsal(arg)
-		end
+		# def self.by_rehearsal(rehearsal)
+		# 	# notes associted with a song from many rehearsal
+		# 	# rehearsal show page iterates over Songs allows access to songnotes (song.songnotes.by_rehearsal(@rehearsal))
+		# 	# the console command below would look like this - Songnote.by_rehearsal(arg)
+		# end
 end
