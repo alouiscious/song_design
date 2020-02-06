@@ -23,14 +23,14 @@ ActiveRecord::Schema.define(version: 2020_01_29_034427) do
     t.bigint "organizer_id"
   end
 
-  create_table "song_notes", force: :cascade do |t|
+  create_table "songnotes", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "type"
     t.integer "song_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["song_id"], name: "index_song_notes_on_song_id"
+    t.index ["song_id"], name: "index_songnotes_on_song_id"
   end
 
   create_table "songs", force: :cascade do |t|
