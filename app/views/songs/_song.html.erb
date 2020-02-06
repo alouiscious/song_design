@@ -1,11 +1,9 @@
 
 <ul> 
-  <li><%= link_to @song.title, edit_song_path(@song) %> <br>
-
-  <%= @song.genre %> <br>
-  <%= @song.key %> <br>
-  <%= @song.in_style_of %> <br>
-  In design: <%= @song.status %> <br>
+  <strong><li><%=link_to @song.title, edit_song_path(@song) %>  | Key: <%= @song.key %></strong> <br>
+  In the style of <%= @song.in_style_of %> <br>
+  Genre: <%= @song.genre %> <br>
+  Design status: <%= @song.status %> <br>
   </li>
  
 </ul>

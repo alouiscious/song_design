@@ -10,12 +10,9 @@
 -->
 
 <h1>Song Notes</h1>
-<% @songnotes.each do |songnote| %>
-  <%= link_to songnote.song.title, song_songnotes_path(songnote.song) %>
-  <%= songnote.title %> <br>
-  <%= songnote.content %> <br>
-  <%= songnote.type %> <br>
-  <%= songnote.index_songnotes_on_song_id %> <br>
+  <% @songnote.song_title %>
+  <%= link_to @songnote.title, song_songnotes_path(songnote.song) %>
+  <%= @songnote.content %> <br>
+  <%= @songnote.type %> <br>
 <br>
 <br>
-<% end %>
