@@ -1,18 +1,10 @@
-<!--    
-    t.string "title"
-    t.text "content"
-    t.string "type"
-    t.integer "song_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["song_id"], name: "index_songnotes_on_song_id"
 
--->
 
 <h1>Song Notes</h1>
-  <% @songnote.song_title %>
-  <%= link_to @songnote.title, song_songnotes_path(songnote.song) %>
+  <% @songnote.title %>
+  <%= link_to @songnote.title, edit_songnote_path(@songnote) %>
   <%= @songnote.content %> <br>
-  <%= @songnote.type %> <br>
+  <%= @songnote.category %> <br>
 <br>
 <br>
+

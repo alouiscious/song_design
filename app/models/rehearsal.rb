@@ -17,19 +17,9 @@ class Rehearsal < ApplicationRecord
 # user types in the name of a song and then find or creates the song by title
 #  a text_field with a datalist show the song name but accepts a title for a new song - need a new method in songnotes model to take in the song name
 
-# <%= form_for @person do |f| %>
-#   <%= f.label :first_name, "First Name" %>:
-#   <%= f.text_field :first_name, list: 'first-name' %>
-#   <datalist id="first-name">
-#     <% Person.all.each do |person| %>
-#       <option value="<%= person.first_name %>"></option>
-#     <% end %>
-#   </datalist>
-#   <%= f.submit %>
-# <% end %>
+
 
 # You may also want to do distinct:
 
-# <% Person.select(:first_name).distinct.each do |person| %>
 
 end

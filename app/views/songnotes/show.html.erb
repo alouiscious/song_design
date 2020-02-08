@@ -1,1 +1,2 @@
-<%= render(@songnotes) %>
+<%= render(@songnote) %>
+<%= button_to "Delete Note", songnote_path(@songnote), method: :delete, data: { confirm: "Really? Sure?" } %>

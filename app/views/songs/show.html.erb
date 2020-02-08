@@ -1,5 +1,14 @@
-<h1>Song Details and Notes</h1>
+<h1>Song Details</h1>
 
+<%= render(@song) %>
 
-<%= render(@song) || "There's no songs available." %>
-<button><%=link_to "Edit Song Details", edit_song_path(@song)%></button>
+<h1>Song Notes</h1>
+  <% @song.songnotes.each do |songnote| %>
+    <%= link_to songnote.title, songnote_path(songnote.id) %>
+    <br>
+    <br>
+  <% end %>
+  <br>
+
+<button><%=link_to "Edit Song Details", edit_song_path(@song)%></button> | 
+<button><%= link_to "Add Song Notes", new_songnote_path(@song) %></button>

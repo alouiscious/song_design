@@ -10,14 +10,14 @@ class SongsController < ApplicationController
   
   def songnote
     @song = Song.find(params[:id]) 
-    # Because ids are unique by table, we can go directly to
+    # Because ids are unique by table, we can go directly to using
     # Songnote.find (no need for @song.songnotes.find).
     @songnote = Songnote.find(params[:songnote_id])
     render template: 'songnotes/show'
   end
 
   def index
-    @songs = Song.all
+    # @songs = Song.all
 
     if params[:songnote_id]
       @songnote = Song.find_by(params[:songnote_id])
@@ -40,28 +40,34 @@ class SongsController < ApplicationController
 
   def new
     @song = Song.new
+    @song.songnotes.build
   end
 
   def create
+    # rehearsal = Rehearsal.find_or_create_by(rehearsal_id: song_params[:title])
+    # @song = rehearsal.song.build(song_params)
     @song = Song.new(song_params)
     @song.save
-    redirect_to @song
-    # if @song.save
-    #   flash[:notice] = "Song Added"
-    #   redirect_to @song
-    # else
-    #   render :new
-    # end
+    if @song.save
+      flash[:notice] = "Song Added"
+      redirect_to songs_path
+    else
+      flash[:notice] = "Song NOT Added"
+      render :new
+
+    end
   end
 
   def edit
     @song = Song.find(params[:id])
+    @song.songnotes.build
 
   end
 
   def update
     @song = Song.find(params[:id])
-    if @song.update(song_params)
+    Song.update(song_params)
+    if @song.save
       redirect_to @song
     else
       render :edit
@@ -69,13 +75,14 @@ class SongsController < ApplicationController
 
   end
 
-  def delete
+  def destroy
     @song = Song.find(params[:id])
     @song.destroy
     flash[:notice] = "Song Deleted"
+    redirect_to songs_path
   end
 
   def song_params
-    params.require(:song).permit(:title, :genre, :key, :in_style_of, :user_id, :rehearsal_id, songnotes_attributes: [:content, :title])
+    params.require(:song).permit(:title, :genre, :key, :in_style_of, :user_id, :rehearsal_id, :songnotes_id, songnotes_attributes:[:content, :title, :category])
   end  
 end

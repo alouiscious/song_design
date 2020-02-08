@@ -1,46 +1,29 @@
 
-
 <div class="songnote">
   <%= form_for @songnote do |f| %>
     <%= f.label :title  %>:
-    <%= f.text_field :title %> <br>
+    <%= f.text_field :title, width: 28 %> <br>
     <%= f.label "Note: " %>
     <%= f.text_area :content, rows: 7, cols: 28 %>
+    <table>
+      <td>
+        <p>Note Category: </p>
+      </td>
+      <td>
+        <%= f.radio_button(:category, "feature") %>
+        <%= f.label(:category_feature, "Feature/Solo") %>
+      </td>
+      <td>
+        <%= f.radio_button(:category, "design") %> 
+        <%= f.label(:category_design, "Design/Structure") %>
+      </td> 
+  
+    </table>
    
-  <%= render partial: 'songnotes/new', locals: { songnote: @songnote } %>
   <%= f.submit %> 
   <% end %>
   <br>
   <br>
 
-  
-  <br>
-  <br>
   </div>
 
-  <br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br>
-  <%= form_for @songnote do |f| %>
-  <%= f.label :song_title %>
-  <%= f.text_field :song_title, list: "songs_list" %>
-    <datalist id="songs_list">
-      <% Song.all.each do |song| %>
-        <option value="<%= song.title %>">
-      <% end %>
-    </datalist>
-  <br>
-  <%= f.label :title %>
-  <%= f.text_field :title %> <br>
-  <%= f.label :content %>
-  <%= f.text_area :content, rows: 7, cols: 28 %> <br>
-  <br>
-
-  <%= f.submit %>
-<br>
-<br>
-<% end %>

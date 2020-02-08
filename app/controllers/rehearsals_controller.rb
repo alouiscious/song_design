@@ -25,16 +25,15 @@ class RehearsalsController < ApplicationController
   end
 
   def create
-    # @rehearsal = Rehearsal.new(rehearsal_params) no foreign key is assigned.
-    @rehearsal = current_user.rehearsals.build(rehearsal_params) # the foreign key is now assigned
-      if  @rehearsal.save
-        redirect_to :index
-        flash[:notice] = "Rehearsal Created"
-
-      else
-        render :new
-        flash[:notice] = "Rehearsal Not Created"
-      end
+    @rehearsal = Rehearsal.new(rehearsal_params) #no foreign key is assigned.
+    # @rehearsal = current_user.rehearsals.build(rehearsal_params) # the foreign key is now assigned
+    if  @rehearsal.save
+      redirect_to @rehearsal
+      flash[:alert] = "Rehearsal Created"
+    else
+      render :new
+      flash[:notice] = "Rehearsal Not Created"
+    end
   end
 
   def edit
@@ -59,6 +58,6 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time, song_ids:[])
+    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time)
   end
 end
