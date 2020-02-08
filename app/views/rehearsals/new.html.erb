@@ -1,6 +1,5 @@
 <h1>Create a Rehearsal</h1>
 
-<%= render 'form' %>
-<br>
-<br>
-<%= link_to "Go to ALL Rehearsals", rehearsals_path %>
+<%= render partial: 'form', locals: {rehearsal: @rehearsal} %>
+
+<%= render partial: 'songs/form', locals: {song: @song} %>

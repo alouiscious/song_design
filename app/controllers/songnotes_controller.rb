@@ -32,8 +32,12 @@ class SongnotesController < ApplicationController
   end
 
   def update
-    @songnote = Songnote.update(songnote_params)
-
+    @songnote = Songnote.find([:id])
+    if @songnote.update
+      redirect_to :show
+    else
+      render
+    end
   end
 
   def delete

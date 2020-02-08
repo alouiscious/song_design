@@ -1,43 +1,38 @@
 
+<div class=rehearsal>
+  <%= form_for @rehearsal do |f| %>
 
-<%= form_for @rehearsal do |f| %>
-  <!-- 
-    f.options_for_select(Rehearsal.pluck(:location).uniq, @rehearsal.location)
-
-    #{datalist#location}= options_for_select(Rehearsal.pluck(:location).uniq, @person.first_name)
-    f.text_field :location, Rehearsal.pluck(:location).uniq %> <br>  
-    TODO use a data-select text_field .uniq .pluck here-->
-  <%= f.label :location %>
-  <%= f.text_field :location, list: "location" %>
-  <datalist id="location">
-    <% Rehearsal.all.uniq do |rehearsal| %>
-      <option value="<%= rehearsal.location %>"></option>
+    <%= f.label :location %>
+    <%= f.text_field :location, list: "location" %>
+    <datalist id="location">
+      <% Rehearsal.pluck(:location).uniq.each do |location| %>
+        <option value="<%= location %>"></option>
+      <% end %>
+    </datalist>
+    <br>
+    
+    <%= f.label :city %>
+    <%= f.text_field :city %> <br>
+    
+    <%= f.label :purpose %>
+    <%= f.text_field :purpose, list: "purpose" %>
+    <datalist id="purpose">
+    <% Rehearsal.pluck(:purpose).uniq.each do |purpose| %>
+      <option value="<%= purpose %>"></option>
     <% end %>
-  </datalist>
-  <br>
-  <%= f.label :city %>
-  <%= f.text_field :city %> <br>
-  <%= f.label :purpose %>
-  <%= f.text_field :purpose, list: "purpose" %>
-  <datalist id="purpose">
-  <% Rehearsal.all.uniq do |rehearsal| %>
-    <option value="<%= rehearsal.purpose %>"></option>
-  <% end %>
-  </datalist>
-  <br>
-  <%= f.label :date %>
-  <%= select_date Date.today, prefix: :date %> <br>  
-  <%= f.label :time %>
-  <%= select_hour Time.now, prefix:  :time %> <br>  
+    </datalist>
+    <br>
+    
+    <%= f.label :date %>
+    <%= select_date Date.today, prefix: :date %> <br>  
+    <%= f.label :time %>
+    <%= select_hour Time.now, prefix:  :time %> <br> 
+
+    <%= f.submit %> 
+    <br>
+    <br>
+  <% end %> 
+</div>
   
-  <%= Rehearsal.all %> <br>
-  
-  <%= Songnote.all %> <br>
 
-
-<br>
-<br>
-
-<%= f.submit %> 
-<% end %>
-
+<%= link_to "Go to ALL Rehearsals", rehearsals_path %>

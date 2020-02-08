@@ -6,8 +6,9 @@ class Songnote < ApplicationRecord
 	
 	# many to many in use here. songnote is the join.
 	# for use when there is no simple association method to call
-	# current user by rehearsal
-	# TODO -  ADD select options for songnote: :type   <!-- # <%= content.select_tag(:type, options_for_select([['Solo/Feature', 1],['Organizer Note', 2],['Design Note', 3]]) %> -->
+	# TODO - add filter current user by rehearsal
+	# TODO -  ADD select options for songnote: :type   
+	# <!-- # <%= content.select_tag(:type, options_for_select([['Solo/Feature', 1],['Organizer Note', 2],['Design Note', 3]]) %> -->
 
 	def song_title=(title)
 		self.song = Song.find_or_create_by(title: title)

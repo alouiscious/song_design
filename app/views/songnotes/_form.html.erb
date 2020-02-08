@@ -1,5 +1,30 @@
 
 
+<div class="songnote">
+  <%= form_for @songnote do |f| %>
+    <%= f.label :title  %>:
+    <%= f.text_field :title %> <br>
+    <%= f.label "Note: " %>
+    <%= f.text_area :content, rows: 7, cols: 28 %>
+   
+  <%= render partial: 'songnotes/new', locals: { songnote: @songnote } %>
+  <%= f.submit %> 
+  <% end %>
+  <br>
+  <br>
+
+  
+  <br>
+  <br>
+  </div>
+
+  <br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br>
   <%= form_for @songnote do |f| %>
   <%= f.label :song_title %>
   <%= f.text_field :song_title, list: "songs_list" %>

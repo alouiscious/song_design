@@ -22,36 +22,8 @@
       <%= f.label(:status_no, "Not In Use") %>
     </td>    
   </table>
-
-  <h4><%= @song.title %>: song design notes...</h4>
-  <%= f.fields_for :songnotes_attributes do |content| %>
-    <%= content.label :title  %>:
-    <%= content.text_field :title %> <br>
-    <%= content.label "Note: " %>
-    <%= content.text_area :content, rows: 7, cols: 28 %>
-    <table>
-    <td>
-      Note Category:
-    </td>
-    <td>
-      <%= content.radio_button(:type, "feature_solo") %>
-      <%= content.label(:type_feature, "Feature/Solo") %>
-    </td>
-    <td>
-      <%= content.radio_button(:type, "design") %> 
-      <%= content.label(:type_design, "Design/Structure") %>
-    </td> 
-    <td>
-      <%= content.radio_button(:type, "organizer") %> 
-      <%= content.label(:type_design, "Organizer") %>
-    </td>        
-  </table>
-
-  <% end %>
   <br>
   <br>
-    
-  
   <%= f.submit %>
 <% end %>
 <br>

@@ -17,6 +17,8 @@ class SongsController < ApplicationController
   end
 
   def index
+    @songs = Song.all
+
     if params[:songnote_id]
       @songnote = Song.find_by(params[:songnote_id])
       if @songnote.nil?
@@ -41,12 +43,15 @@ class SongsController < ApplicationController
   end
 
   def create
-    @song = Song.create(song_params)
-    if @song.save
-      redirect_to @song
-    else
-      render :new
-    end
+    @song = Song.new(song_params)
+    @song.save
+    redirect_to @song
+    # if @song.save
+    #   flash[:notice] = "Song Added"
+    #   redirect_to @song
+    # else
+    #   render :new
+    # end
   end
 
   def edit
@@ -56,12 +61,12 @@ class SongsController < ApplicationController
 
   def update
     @song = Song.find(params[:id])
-    @song = Song.update(song_params)
     if @song.update(song_params)
       redirect_to @song
     else
       render :edit
     end
+
   end
 
   def delete
@@ -71,6 +76,6 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    params.require(:song).permit(:title, :genre, :key, :in_style_of, :user_id, :rehearsal_id, songnote_ids:[])
+    params.require(:song).permit(:title, :genre, :key, :in_style_of, :user_id, :rehearsal_id, songnotes_attributes: [:content, :title])
   end  
 end
