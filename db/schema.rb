@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_034427) do
+ActiveRecord::Schema.define(version: 2020_01_29_032535) do
 
   create_table "rehearsals", force: :cascade do |t|
     t.string "location"
@@ -18,15 +18,15 @@ ActiveRecord::Schema.define(version: 2020_01_29_034427) do
     t.string "purpose"
     t.datetime "date"
     t.datetime "time"
+    t.bigint "organizer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "organizer_id"
   end
 
   create_table "songnotes", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.string "type"
+    t.string "category"
     t.integer "song_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_034427) do
     t.string "genre"
     t.string "key"
     t.string "in_style_of"
-    t.boolean "status"
+    t.string "status"
     t.integer "rehearsal_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false

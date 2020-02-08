@@ -3,7 +3,7 @@ class CreateSongnotes < ActiveRecord::Migration[6.0]
     create_table :songnotes do |t|
       t.string :title
       t.text :content
-      t.string :type
+      t.string :category
       t.belongs_to :song, counter_cache: true
       
 

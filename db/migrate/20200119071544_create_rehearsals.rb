@@ -6,6 +6,7 @@ class CreateRehearsals < ActiveRecord::Migration[6.0]
       t.string :purpose
       t.datetime :date
       t.datetime :time
+      t.bigint :organizer_id
       
 
 
