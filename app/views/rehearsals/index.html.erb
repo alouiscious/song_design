@@ -1,3 +1,4 @@
+<div class="rehearsals"> </div>
 <table>
 <tr>
   <td>
@@ -11,12 +12,14 @@
 <tr>
   <td>
     <% @rehearsals.each do |rehearsal| %>
-      <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> | <%= rehearsal.date %> TODO %A %b %e <br>  <%= rehearsal.time  %> TODO %l %p 
-    <br>
-    <br>  
+      <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> |  
+      <% time = rehearsal.time %>
+      <%= time.strftime("%l %p") %>   | 
+      <%= rehearsal.date.strftime("%A %b %e") %>
+      <br>  
+      <br>  
     <% end %>  
   </td>
 </tr>
-
-
 </table>
+

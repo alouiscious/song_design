@@ -8,22 +8,9 @@
   <%= f.text_field :genre %> <br>
   <%= f.label :in_style_of %>
   <%= f.text_field :in_style_of %> <br>
+ 
 
-  <table>
-    <td>
-      Song Design Status:
-    </td>
-    <td>
-      <%= f.radio_button(:status, "in use") %>
-      <%= f.label(:status_yes, "In Use") %>
-    </td>
-    <td>
-      <%= f.radio_button(:status, "not in use") %> 
-      <%= f.label(:status_no, "Not In Use") %>
-    </td>    
-  </table>
-  <br>
-  <br>
+
 
   <div class="songnote">
   <%= f.fields_for :songnotes do |note_attribute| %>

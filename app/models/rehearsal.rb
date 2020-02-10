@@ -3,23 +3,33 @@ class Rehearsal < ApplicationRecord
 	has_many :users, through: :user_rehearsals
 	has_many :songnotes
 	has_many :songs, -> {distinct}, through: :songnotes
-	belongs_to :organizer, class_name: 'User'
-	accepts_nested_attributes_for :songnotes 
+	belongs_to :organizer, class_name: 'User', optional: true
 	
-	# adds songnotes attributes= has to belong to a song and has a song id.
+	# accepts_nested_attributes_for :user_rehearsals, :reject_if => proc { |attrs| attrs[:user_id].blank? } 
+	accepts_nested_attributes_for :songs, :reject_if => proc { |attrs| attrs[:title].blank? }
+	accepts_nested_attributes_for :songnotes, :reject_if => proc { |attrs| attrs[:title].blank? }
+	accepts_nested_attributes_for :users, :reject_if => proc { |attrs| attrs[:name].blank? }
+	accepts_nested_attributes_for :organizer, :reject_if => proc { |attrs| attrs[:name].blank? }
 
-# we have an organizer_id foreign-key/column which makes an assumption about the sequel query and the items will get from the query.
-# this organizer is a user "SELECT * FROM Users WHERE Users.id = ? LIMIT 1", self.organizer_id 
-# when we call organizer we get the user association with the organizer of the rehearsal. it is the user who organizer. 
-# a class is like a table, and instance is like row. looking for info in the row and use method to specify the search
+  def user_rehearsal_ids=(ids)
+    ids.each do |id|
+      user_rehearsal = User_Rehearsal.find(id)
+      self.user_rehearsals << user_rehearsal
+    end
+  end
 
-# when a rehearsal is created or viewed / create songotes to belong to a user or a song	  
-# user types in the name of a song and then find or creates the song by title
-#  a text_field with a datalist show the song name but accepts a title for a new song - need a new method in songnotes model to take in the song name
+  def user_rehearsal_ids
+    self.try(:user_rehearsal).try(:ids)
+	end
+	
+	def songnote_ids=(ids)
+    ids.each do |id|
+      songnote = Songnote.find(id)
+      self.songnotes << songnote
+    end
+  end
 
-
-
-# You may also want to do distinct:
-
-
+  def songnote_ids
+    self.try(:songnote).try(:ids)
+  end
 end

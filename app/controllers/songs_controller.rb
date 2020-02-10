@@ -19,6 +19,7 @@ class SongsController < ApplicationController
   def index
     # @songs = Song.all
 
+    #PROVIDES SONGS WITH THEIR SONGNOTES BY CONFIRMING THEN SEARCHING FOR THE SONGNOTE ID
     if params[:songnote_id]
       @songnote = Song.find_by(params[:songnote_id])
       if @songnote.nil?
@@ -45,7 +46,7 @@ class SongsController < ApplicationController
 
   def create
     # rehearsal = Rehearsal.find_or_create_by(rehearsal_id: song_params[:title])
-    # @song = rehearsal.song.build(song_params)
+    @song = rehearsal.song.build(song_params)
     @song = Song.new(song_params)
     @song.save
     if @song.save

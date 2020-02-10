@@ -1,3 +1,69 @@
+THIS CODE CREATES A MODEL FILTER AND THEN USES IT IN THE CONTROLLER
+_ _ _ .RB(the model)
+def self.by_author(author_id)
+  where(author: author_id)
+end
+
+_ _ _ .CONTROLLER.RB (the controller)
+# app/controllers/posts_controller.rb
+ 
+if !params[:author].blank?
+  @posts = Post.by_author(params[:author])
+elsif !params[:date].blank?
+
+
+
+REMOVING SONG.STATUS TO LET THE REHEARSAL DETERMINE AND RENDER SONGS INCLUDED IN A REHEARSAL
+  <table>
+    <td>
+      Song Design Status:
+    </td>
+    <td>
+      <%= f.radio_button(:status, "in use") %>
+      <%= f.label(:status_yes, "In Use") %>
+    </td>
+    <td>
+      <%= f.radio_button(:status, "not in use") %> 
+      <%= f.label(:status_no, "Not In Use") %>
+    </td>    
+  </table>
+  <br>
+  <br>
+   
+
+THIS IS A PREVIOUS ATTEMPT TO EVAL CHECKBOXES
+
+<section class="todoapp">
+  <header class="header">
+    <h1><%= @song.name %></h1>
+    <%= form_for([@song, @song_note]) do |f| %>
+      <%= f.text_field :description, :class => "new-todo", :placeholder => (@item.errors.full_messages_for(:description).first || "Enter a new item...") %>
+      <%= f.submit :style => "display: none" %>
+    <% end %>
+  </header>
+  <section class="main">
+    <input class="toggle-all" type="checkbox">
+    <label for="toggle-all">Mark all as complete</label>
+    <ul class="todo-list">
+      <% @song.song_notes.each do |item| %>
+      <li class="<%= "completed" if item.complete? %>">
+        <div class="view">
+          <%= form_for([@song, item]) do |f| %>
+            <%= f.check_box :status, :class => "toggle", :checked => (true if item.complete?) %>
+          <% end %>
+
+          <label><%= item.description %></label>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </section>
+  <footer class="footer">
+  </footer>
+</section>
+
+
+
 THIS CODE IS FOR ITEM DELETION <% @people.each do |person| %>
 <div class="Songnote">
   <span><%= songnote.title %></span>

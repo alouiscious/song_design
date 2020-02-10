@@ -1,12 +1,17 @@
-  <%= link_to rehearsal.location, edit_rehearsal_path(rehearsal) %> | <%= rehearsal.date %> TODO %A %b %e <br>  <%= rehearsal.time  %> TODO %l %p
+  <%= link_to rehearsal.location, edit_rehearsal_path(rehearsal) %> | 
+  <%= rehearsal.date.strftime("%A %b %e") %>  <br>  
+  <%= rehearsal.time.strftime("%l %p") %>
   <%= rehearsal.city %> <br>
   <%= rehearsal.purpose %> <br>
   Organized by: <%= rehearsal.organizer_id %> <%= rehearsal.organizer.name %>
 <br>
+    <br>
+        <%= form_with model: @song do |song_item| %>
+          <%= song_item.collection_check_boxes(:song_id, Song.all, :id, :title) %>
+          <br>
+        <% end %>
+    <br>
+   
 <br>
 <%= link_to "Go to ALL Rehearsals", rehearsals_path %>
-
-
-
-
 

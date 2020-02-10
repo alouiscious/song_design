@@ -8,7 +8,8 @@ class Song < ApplicationRecord
 
   accepts_nested_attributes_for :songnotes, :reject_if => proc { |attrs| attrs[:content].blank? }
   accepts_nested_attributes_for :rehearsals, :reject_if => proc { |attrs| attrs[:location].blank? }
-  accepts_nested_attributes_for :user, :reject_if => proc { |attrs| attrs[:name].blank? }
+  # accepts_nested_attributes_for :users, :reject_if => proc { |attrs| attrs[:name].blank? }
+
 
   
   def songnote_ids=(ids)
