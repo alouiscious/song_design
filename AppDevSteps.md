@@ -3,6 +3,23 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
+	# adds songnotes attributes= has to belong to a song and has a song id.
+
+# we have an organizer_id foreign-key/column which makes an assumption about the sequel query and the items it will get from the query.
+# this organizer is a user "SELECT * FROM Users WHERE Users.id = ? LIMIT 1", self.organizer_id 
+# when we call organizer we get the user association with the organizer of the rehearsal. it is the user who is organizer. 
+# a class is like a table, and instance is like row. looking for info in the row and use method to specify the search
+
+# when a rehearsal is created or viewed / create songotes to belong to a user or a song	
+
+# user enters the name of a song and then find or creates the song by title
+#  a text_field with a datalist shows the song name but accepts a title for a new song - need a new method in songnotes model to take in the song name
+
+
+
+# You may also want to do distinct:
+
+
 Things you may want to cover:
   make sure you have a scope method
   user submittal
