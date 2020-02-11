@@ -28,9 +28,13 @@ ActiveRecord::Schema.define(version: 2020_01_29_032535) do
     t.text "content"
     t.string "category"
     t.integer "song_id"
+    t.integer "rehearsal_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["rehearsal_id"], name: "index_songnotes_on_rehearsal_id"
     t.index ["song_id"], name: "index_songnotes_on_song_id"
+    t.index ["user_id"], name: "index_songnotes_on_user_id"
   end
 
   create_table "songs", force: :cascade do |t|

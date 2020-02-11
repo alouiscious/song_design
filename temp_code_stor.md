@@ -1,3 +1,12 @@
+THIS IS THE CHECK BOXES CODE REMOVED FROM REHEARSALS VIEW
+
+<%= fields_for @song do |song_item| %>
+  <%= song_item.collection_check_boxes(:song_id, Song.all, :id, :title) %>
+  <br>
+  <% end %>
+
+
+
 THIS CODE CREATES A MODEL FILTER AND THEN USES IT IN THE CONTROLLER
 _ _ _ .RB(the model)
 def self.by_author(author_id)
