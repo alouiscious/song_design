@@ -1,13 +1,15 @@
 
 <div class="songnote">
+<h2>quick note for <%= @rehearsal.song %> </h2>
   <%= form_for @songnote do |f| %>
-    <%= f.label :title  %>:
+    <%= f.label 'Topic: ' %>
+    <%= f.hidden_field :rehearsal_id %>
     <%= f.text_field :title, width: 28 %> <br>
     <%= f.label "Note: " %>
     <%= f.text_area :content, rows: 7, cols: 28 %>
     <table>
       <td>
-        <p>Note Category: </p>
+        <p>Category: </p>
       </td>
       <td>
         <%= f.radio_button(:category, "feature") %>

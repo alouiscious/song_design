@@ -7,7 +7,7 @@
 
     <tbody style="display=block">
       <tr>
-      <strong>Set your rehearsal</strong> <br>
+      <strong>Set up your rehearsal</strong> <br><br>
       <%= f.label :organizer %>:
         <% if rehearsal.organizer_id.nil? %>
           <%= f.text_field :organizer_id, list: "organizer_name" %>
@@ -18,7 +18,7 @@
             <% end %>
           </datalist>
         <% else %>  
-          <%= @rehearsal.organizer.name %> 
+          <strong><%= @rehearsal.organizer.name %></strong> 
         <% end %>
         <br>
 
@@ -53,17 +53,13 @@
         <strong>Song avails for this rehearsal</strong>
 
         <br>
-        <%= form_with model: @song do |song_item| %>
-          <%= song_item.collection_check_boxes(:status, Song.all, :id, :title) %> 
+        <%= fields_for @songs do |songs_attributes| %>
+          <%= songs_attributes.collection_check_boxes(:status, Song.all, :id, :title) %> 
         <% end %>
+        <br>
+        </tr>
 
         <br>
-         </tr>
-
-        <br>
-       
-
-
         <tr>
         <%= f.submit %> 
         </tr>

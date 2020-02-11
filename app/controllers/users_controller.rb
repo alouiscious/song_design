@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   
   before_action :authenticate_user!
+
   def index
     if params[:songnote_id]
       @songnote = User.find_by(params[:songnote_id])
       if @songnote.nil
-        redirect_to users_songnotes_path
+        redirect_to users_path
       else
         @user = @songnotes.users
       end
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @user = User.update(user_params)
     if User.update(user_params)
       redirect_to @user
     else

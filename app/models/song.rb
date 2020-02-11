@@ -1,7 +1,7 @@
 class Song < ApplicationRecord
 	has_many :songnotes
 	has_many :rehearsals, through: :songnotes
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, foreign_key: :user_id
   
   validates :title, :key, presence: true
   validates :title, uniqueness: true

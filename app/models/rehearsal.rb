@@ -3,7 +3,7 @@ class Rehearsal < ApplicationRecord
 	has_many :users, through: :user_rehearsals
 	has_many :songnotes
 	has_many :songs, -> {distinct}, through: :songnotes
-	belongs_to :organizer, class_name: 'User', optional: true
+	belongs_to :organizer, class_name: 'User', optional: true, foreign_key: :organizer_id
 	
 	# accepts_nested_attributes_for :user_rehearsals, :reject_if => proc { |attrs| attrs[:user_id].blank? } 
 	accepts_nested_attributes_for :songs, :reject_if => proc { |attrs| attrs[:title].blank? }
@@ -11,6 +11,11 @@ class Rehearsal < ApplicationRecord
 	accepts_nested_attributes_for :users, :reject_if => proc { |attrs| attrs[:name].blank? }
 	accepts_nested_attributes_for :organizer, :reject_if => proc { |attrs| attrs[:name].blank? }
 
+  def songs_attributes=(song)
+    self.song = Song.find_or_create_by(title: song[:title])
+    self.song.update(song)
+  end
+  
   def user_rehearsal_ids=(ids)
     ids.each do |id|
       user_rehearsal = User_Rehearsal.find(id)

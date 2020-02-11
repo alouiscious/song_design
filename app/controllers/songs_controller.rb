@@ -47,8 +47,9 @@ class SongsController < ApplicationController
   def create
     # rehearsal = Rehearsal.find_or_create_by(rehearsal_id: song_params[:title])
     @song = rehearsal.song.build(song_params)
-    @song = Song.new(song_params)
+    @song = Song.new(rehearsal_id: params[:rehearsal_id], song_params)
     @song.save
+
     if @song.save
       flash[:notice] = "Song Added"
       redirect_to songs_path

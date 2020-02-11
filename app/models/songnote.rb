@@ -1,7 +1,7 @@
 class Songnote < ApplicationRecord
-	belongs_to :song, optional: true
-	belongs_to :rehearsal, optional: true
-	belongs_to :user, optional: true
+	belongs_to :song, foreign_key: :song_id
+	belongs_to :rehearsal, foreign_key: :rehearsal_id
+	belongs_to :user, foreign_key: :user_id
 	
 	
 	# many to many in use here. songnote is the join.

@@ -1,3 +1,11 @@
-<h1>Rehearsal Details</h1>
+<h4><%= @rehearsal.location %> Rehearsal Details <br>
+for <%= @rehearsal.date.strftime("%A %b %e") %> | <%= @rehearsal.time.strftime("%l %p") %></h4>
 
 <%= render partial: 'rehearsal', locals: {rehearsal: @rehearsal, song: @song, songnote: @songnote} %>
+<br>
+<%= link_to "Create Song Design Notes", new_rehearsal_songnote_path(@rehearsal) %> 
+<p>Songnotes:</p>
+<% @rehearsal.songnotes.each do |songnote| %>
+  <div><%= songnote.title %></div>
+<% end %>
+

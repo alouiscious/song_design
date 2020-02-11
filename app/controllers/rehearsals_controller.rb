@@ -31,14 +31,18 @@ class RehearsalsController < ApplicationController
   end
 
   def show
+    @song = Song.find(params[:id])
     @rehearsal = Rehearsal.find(params[:id])
+    # binding.pry
+    @rehearsal.songnotes.build
+
     if @rehearsal.nil?
       render :new
     end
   end
 
   def new
-    @rehearsal = Rehearsal.new
+    @rehearsal = Rehearsal.new(songnote_id: params[:songnote_id], song_id: params[:song_id])
     @rehearsal.songs.build
     @rehearsal.users.build
     # @rehearsal.organizer.build
@@ -46,9 +50,9 @@ class RehearsalsController < ApplicationController
 
   def create
     # @rehearsal =  # the foreign key is now assigned
-    @rehearsal = Rehearsal.new(rehearsal_params) #no foreign key is assigned.
+    # @rehearsal = Rehearsal.new(rehearsal_params) #no foreign key is assigned.
 
-    @rehearsal = current_user.rehearsal.song.build(rehearsal_params) # the foreign key is now assigned
+    @rehearsal = current_user.rehearsals.build(rehearsal_params) # the foreign key is now assigned
     @rehearsal.save
     if  @rehearsal.save
       redirect_to @rehearsal
@@ -58,19 +62,22 @@ class RehearsalsController < ApplicationController
       flash[:notice] = "Rehearsal Not Created"
     end
   end
-
+  
   def edit
     @rehearsal = Rehearsal.find(params[:id])
     @rehearsal.songs.build
+    binding.pry
     # @rehearsals.organizers.build
 
 
   end
 
   def update
+    @song = Song.find_or_create_by(params[:id])
     @rehearsal = Rehearsal.find(params[:id])
-    Rehearsal.update(rehearsal_params)
-    if @rehearsal.save
+    @rehearsal = Rehearsal.update(rehearsal_params)
+
+    if @rehearsal.update(rehearsal_params).to_hash
       redirect_to @rehearsal
     else
       render :edit
