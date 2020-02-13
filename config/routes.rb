@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   resources :rehearsals do [:index, :show, :new, :create, :edit, :update, :delete]
     resources :songnotes, only: [:index, :show, :new, :create, :edit, :update]
-    resources :songs, only: [:index, :show, :new, :create, :edit, :update]
   end 
 
   resources :songs do

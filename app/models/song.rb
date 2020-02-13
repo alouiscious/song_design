@@ -11,17 +11,7 @@ class Song < ApplicationRecord
   # accepts_nested_attributes_for :users, :reject_if => proc { |attrs| attrs[:name].blank? }
 
 
-  
-  def songnote_ids=(ids)
-    ids.each do |id|
-      songnote = Songnote.find(id)
-      self.songnotes << songnote
-    end
-  end
 
-  def songnote_ids
-    self.try(:songnote).try(:ids)
-  end
 
   def musician_name=(name)
     musician = User.find_by(name: name)

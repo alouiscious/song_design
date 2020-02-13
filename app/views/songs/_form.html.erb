@@ -8,37 +8,18 @@
   <%= f.text_field :genre %> <br>
   <%= f.label :in_style_of %>
   <%= f.text_field :in_style_of %> <br>
- 
+  <%= f.radio_button(:status, "true") %>
+  <%= f.label(:status_inuse, "In Use") %>
+  <%= f.radio_button(:status, "false") %> 
+  <%= f.label(:status_notinuse, "Not In Use") %>
+<br>
+<br>
 
 
-
-  <div class="songnote">
-  <%= f.fields_for :songnotes do |note_attribute| %>
-      <%= note_attribute.label :title  %>:
-      <%= note_attribute.text_field :title %> <br>
-      <%= note_attribute.label "Note: " %>
-      <%= note_attribute.text_area :content, rows: 7, cols: 28 %>
-   
-    <table>
-      <td>
-        <p>Note Category: </p>
-      </td>
-      <td>
-        <%= note_attribute.radio_button(:category, "feature") %>
-        <%= note_attribute.label(:category_feature, "Feature/Solo") %>
-      </td>
-      <td>
-        <%= note_attribute.radio_button(:category, "design") %> 
-        <%= note_attribute.label(:category_design, "Design/Structure") %>
-      </td>   
-    </table> 
-    <% end %>
-   </div>
-   <br>
-   <br>
    
   <%= f.submit %>
 <% end %>
 <br>
 <br>
 
+<%= button_to "Add Song Design Note", new_songnote_path(song) %>
