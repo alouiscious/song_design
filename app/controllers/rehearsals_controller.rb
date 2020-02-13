@@ -31,7 +31,6 @@ class RehearsalsController < ApplicationController
   end
 
   def show
-    @song = Song.find(params[:id])
     @rehearsal = Rehearsal.find(params[:id])
     # binding.pry
     @rehearsal.songnotes.build
@@ -42,8 +41,8 @@ class RehearsalsController < ApplicationController
   end
 
   def new
-    @rehearsal = Rehearsal.new(songnote_id: params[:songnote_id], song_id: params[:song_id])
-    @rehearsal.songs.build
+    @rehearsal = Rehearsal.new
+    10.times { @rehearsal.songnotes.build }
     @rehearsal.users.build
     # @rehearsal.organizer.build
   end
@@ -66,18 +65,14 @@ class RehearsalsController < ApplicationController
   def edit
     @rehearsal = Rehearsal.find(params[:id])
     @rehearsal.songs.build
-    binding.pry
+    # binding.pry
     # @rehearsals.organizers.build
-
 
   end
 
   def update
-    @song = Song.find_or_create_by(params[:id])
     @rehearsal = Rehearsal.find(params[:id])
-    @rehearsal = Rehearsal.update(rehearsal_params)
-
-    if @rehearsal.update(rehearsal_params).to_hash
+    if @rehearsal.update(rehearsal_params)
       redirect_to @rehearsal
     else
       render :edit
@@ -92,6 +87,6 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time, :organizer, :organizer_name, :song_title, :song_id, :user_id, :user_name)
+    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time, :organizer, :organizer_name, :user_name)
   end
 end
