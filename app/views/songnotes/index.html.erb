@@ -1,7 +1,12 @@
-<h1>Song Notes</h1>
-  <% @songnotes.each do |songnote| %>
-  <%= songnote.title %>
-  <%= songnote.song_title %>
-  <% end %>
-<br>
-<br>
+<h1>All Song Design Notes</h1>
+<% @songnotes.each do |songnote| %>
+  <%= songnote.title %> from:
+  <%= link_to songnote.rehearsal.title, rehearsal_path(@songnote.rehearsal) if @songnote.rehearsal %> (<%= link_to "Edit Songnote", edit_rehearsal_songnote_path(@songnote.rehearsal, @songnote) if @songnote.rehearsal %> <br>
+  <%= songnote.content %> <br>
+  <%= songnote.category %> <br>
+<% end %>  
+
+
+
+
+

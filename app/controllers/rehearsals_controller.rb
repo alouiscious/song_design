@@ -32,7 +32,6 @@ class RehearsalsController < ApplicationController
 
   def show
     @rehearsal = Rehearsal.find(params[:id])
-    # binding.pry
     @rehearsal.songnotes.build
 
     if @rehearsal.nil?
@@ -44,7 +43,6 @@ class RehearsalsController < ApplicationController
     @rehearsal = Rehearsal.new
     10.times { @rehearsal.songnotes.build }
     @rehearsal.users.build
-    # @rehearsal.organizer.build
   end
 
   def create
@@ -65,8 +63,6 @@ class RehearsalsController < ApplicationController
   def edit
     @rehearsal = Rehearsal.find(params[:id])
     @rehearsal.songs.build
-    # binding.pry
-    # @rehearsals.organizers.build
 
   end
 

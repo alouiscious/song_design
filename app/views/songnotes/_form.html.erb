@@ -1,10 +1,24 @@
 
 <div class="songnote">
-<h2>quick note for <%= @rehearsal.song %> </h2>
+
   <%= form_for @songnote do |f| %>
+    <br>
+
+    <%= f.label "Link this note to a song title (new/existing)>" %> <br>
+        <%= f.text_field :song_title, list: "song_title" %>
+        <datalist id="song_title">
+          <% Song.pluck(:title).each do |song_title| %>
+            <option value="<%= song_title %>"></option>
+          <% end %>
+        </datalist>
+        <br>
+<br>
+<br>
+
+
+
     <%= f.label 'Topic: ' %>
-    <%= f.hidden_field :rehearsal_id %>
-    <%= f.text_field :title, width: 28 %> <br>
+    <%= f.text_field :title, width: 28 %> <br><br>
     <%= f.label "Note: " %>
     <%= f.text_area :content, rows: 7, cols: 28 %>
     <table>
@@ -21,7 +35,15 @@
       </td> 
   
     </table>
-   
+
+<p>Link this note to a rehearsal</p>    
+  <% if songnote.rehearsal_id.nil? %>
+    <%= select_tag "songnote[rehearsal_id]", options_from_collection_for_select(Rehearsal.all, :id, :date) %>
+  <% else %>
+    <%= hidden_field_tag "songnote[rehearsal_id]", songnote.rehearsal_id %>
+  <% end %>
+  <br><br>
+  <br><br>   
   <%= f.submit %> 
   <% end %>
   <br>

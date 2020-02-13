@@ -7,43 +7,53 @@ class SongnotesController < ApplicationController
   end
 
   def show
-    @songnote = Songnote.find(params[:id])
+    @songnote = Songnote.find_by(rehearsal_id: params[:rehearsal_id])
+    # binding.pry
   end
 
   def new
-    @songnote = Songnote.new(rehearsal_id: params[:rehearsal_id], song_id: params[:song_id])
-    # I THOUGHT THIS WOULD RUN IN THE MODEL
-    def song_title=(title)
-      self.song = Song.find_or_create_by(title: title)
+    if params[:rehearsal_id] && !Rehearsal.exists?(params[:rehearsal_id])
+      redirect_to rehearsals_path, alert: "Rehearsal NOT found."
+    else
+      @songnote = Songnote.new(rehearsal_id: params[:rehearsal_id])
+      # binding.pry
     end
-  
-    def song_title
-      self.song ? self.song.title : nil
-      # self.try(:song).try(:title)
-    end
-    
+    # @rehearsal.songnote.build
+
   end
   
   def create
-    # @songnote = Songnote.new(songnote_params)
-
     #This is an in-memory attributes. it allow song_title (rather than song-id) to be set as songnote when the note is created.
-    @songnote = Songnote.new({title: params[:songnote][:title], content: params[:songnote][:content], category: params[:songnote][:category]})
-      # binding.pry
-      @songnote.save
+    @songnote = Songnote.new({title: params[:songnote][:title], content: params[:songnote][:content], category: params[:songnote][:category], rehearsal_id: params[:songnote][:rehearsal_id], song_id: params[:songnote][:song_id]})
+    # @songnote = Songnote.new(songnote_params)
+    @songnote.save
+    if @songnote.save
+      redirect_to @rehearsal, alert: "Note Created."
+    else
+      render :new, alert: "Songnote NOT created!"
+    end
   end
-
+  
   def edit
-    @songnote = Songnote.find(params[:id])
+    if params[:rehearsal_id]
+      rehearsal = Rehearsal.find_by(id: params[:rehearsal_id])
+      if rehearsal.nil?
+        redirect_to rehearsals_path, alert: "Rehearsal not found."
+      else
+        @songnote = rehearsal.songnotes.find_by(id: params[:id])
+        redirect_to rehearsal_songnotes_path(rehearsal), alert: "Songnote not found." if @songnote.nil?
+      end
+    else
+      @songnote = Songnote.find_by(params[:id])
+    end
   end
 
   def update
     @songnote = Songnote.find(params[:id])
-    Songnote.update(songnote_params)
-    if @songnote.save
-      redirect_to songs_path(@song)
+    if @songnote.update(songnote_params)
+      redirect_to songnote_path(@songnote)
     else
-      flash[:alert] = "Note Not Saved"
+      flash[:alert] = "Note Not Updated"
     end
   end
 
@@ -54,8 +64,10 @@ class SongnotesController < ApplicationController
     redirect_to @song.songnotes
   end
 
+  private
+
   def songnote_params
-    params.require(:songnote).permit(:title, :content, :category, :song_id, :rehearsal_id)
+    params.require(:songnote).permit(:title, :content, :category, :rehearsal_id)
 
   end  
 end
