@@ -2,20 +2,16 @@
 <div class="songnote">
 
   <%= form_for @songnote do |f| %>
-    <br>
-
-    <%= f.label "Link this note to a song title (new/existing)>" %> <br>
-        <%= f.text_field :song_title, list: "song_title" %>
-        <datalist id="song_title">
-          <% Song.pluck(:title).each do |song_title| %>
-            <option value="<%= song_title %>"></option>
-          <% end %>
-        </datalist>
-        <br>
-<br>
-<br>
-
-
+  <% if songnote.song_id.nil? %>
+    <p>Link this note to a song</p>    
+    <%= select_tag "song_id", options_from_collection_for_select(Song.all, :id, :title) %>
+  <% else %>
+    <%= hidden_field_tag "song_id", songnote.song_id %>
+  <% end %>
+  <br><br>
+  <br>
+  <br>
+  <br>
 
     <%= f.label 'Topic: ' %>
     <%= f.text_field :title, width: 28 %> <br><br>
@@ -36,8 +32,8 @@
   
     </table>
 
-<p>Link this note to a rehearsal</p>    
   <% if songnote.rehearsal_id.nil? %>
+    <p>Link this note to a rehearsal</p>    
     <%= select_tag "songnote[rehearsal_id]", options_from_collection_for_select(Rehearsal.all, :id, :date) %>
   <% else %>
     <%= hidden_field_tag "songnote[rehearsal_id]", songnote.rehearsal_id %>

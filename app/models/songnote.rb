@@ -9,17 +9,10 @@ class Songnote < ApplicationRecord
 	# TODO - add filter current user by rehearsal
 	# TODO -  ADD select options for songnote: :category   
 	# <!-- # <%= content.select_tag(:category, options_for_select([['Solo/Feature', 1],['Organizer Note', 2],['Design Note', 3]]) %> -->
-
-	# def song_id_field(songnote)
-  #   if songnote.rehearsal.nil?
-  #     select_tag "songnote[song_id]", options_from_collection_for_select(Song.all, :id, :title)
-  #   else
-  #     hidden_field_tag "songnote[song_id]", songnote.song_id
-  #   end
-	# end
 	
 	def song_title=(title)
 		self.song = Song.find_or_create_by(title: title)
+		self.song.update(song)
 	end
 
 	def song_title

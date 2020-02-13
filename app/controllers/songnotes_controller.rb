@@ -7,7 +7,7 @@ class SongnotesController < ApplicationController
   end
 
   def show
-    @songnote = Songnote.find_by(rehearsal_id: params[:rehearsal_id])
+    @songnote = Songnote.find_by(rehearsal_id: params[:rehearsal_id], song_id: params[:song_id])
     # binding.pry
   end
 
@@ -16,22 +16,22 @@ class SongnotesController < ApplicationController
       redirect_to rehearsals_path, alert: "Rehearsal NOT found."
     else
       @songnote = Songnote.new(rehearsal_id: params[:rehearsal_id])
-      # binding.pry
     end
-    # @rehearsal.songnote.build
 
   end
   
   def create
-    #This is an in-memory attributes. it allow song_title (rather than song-id) to be set as songnote when the note is created.
     @songnote = Songnote.new({title: params[:songnote][:title], content: params[:songnote][:content], category: params[:songnote][:category], rehearsal_id: params[:songnote][:rehearsal_id], song_id: params[:songnote][:song_id]})
     # @songnote = Songnote.new(songnote_params)
     @songnote.save
     if @songnote.save
-      redirect_to @rehearsal, alert: "Note Created."
+      flash[:alert] = "Note Created."
+      redirect_to @rehearsal
     else
-      render :new, alert: "Songnote NOT created!"
+      flash[:notice] = "Songnote NOT created!"
+      render :new 
     end
+    # binding.pry
   end
   
   def edit
@@ -67,7 +67,7 @@ class SongnotesController < ApplicationController
   private
 
   def songnote_params
-    params.require(:songnote).permit(:title, :content, :category, :rehearsal_id)
+    params.require(:songnote).permit(:title, :content, :category, :rehearsal_id, :song_id)
 
   end  
 end
