@@ -73,3 +73,22 @@ there are two destroy user session commands in the routes.rb and the application
 * Deployment instructions
 
 * ...
+
+
+
+using nested form
+
+Dependencies (Gems/packages)
+Configuration (environment variables/other stuff in config folder)
+Database
+Models
+in parent model, add accepts_nested_attributes_for :child or define the attributes= method in the parent model:
+def children_attributes=(attributes)
+  something_custom
+end
+If you don’t do either of these things, then your fields for will not generate the right markup. You won’t see children_attributes[0][name] you’ll see something like children
+Views
+add fields_for :children to the parent model form view. Inside of the fields for, add fields for each of the attributes needed to create a valid child
+Controllers
+make sure that you whitelist the fields_for in strong params using
+params.require(:parent).permit(children_attributes: [:first_field_name, :second_field_name, :third_field_name])

@@ -1,3 +1,15 @@
+THIS CODE WAS REMOVED FROM SONGNOTE NEW VIEW
+
+  <%= fields_for @songnotes do |songnotes_attribute| %>
+    <%= songnotes_attribute.label :song_title %>
+    <%= songnotes_attribute.text_field :song_title %> <br>
+    <%= songnotes_attribute.label "Note Title" %> 
+    <%= songnotes_attribute.text_field :title %> <br>
+    <%= songnotes_attribute.label :content %> 
+    <%= songnotes_attribute.text_area :content, rows:7, cols: 28 %> <br>
+  <% end %>
+
+
 THIS IS THE CHECK BOXES CODE REMOVED FROM REHEARSALS VIEW
 
 <%= fields_for @song do |song_item| %>
@@ -9,15 +21,15 @@ THIS IS THE CHECK BOXES CODE REMOVED FROM REHEARSALS VIEW
 
 THIS CODE CREATES A MODEL FILTER AND THEN USES IT IN THE CONTROLLER
 _ _ _ .RB(the model)
-def self.by_author(author_id)
-  where(author: author_id)
+def self.by_(rehearsal_id)
+  where(rehearsal: rehearsal_id)
 end
 
 _ _ _ .CONTROLLER.RB (the controller)
-# app/controllers/posts_controller.rb
+# app/controllers/songnotes_controller.rb
  
-if !params[:author].blank?
-  @posts = Post.by_author(params[:author])
+if !params[:rehearsal].blank?
+  @songnotes = Songnotes.by_rehearsal(params[:rehearsal])
 elsif !params[:date].blank?
 
 
