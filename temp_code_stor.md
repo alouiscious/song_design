@@ -1,3 +1,23 @@
+FUCKING SHIT WORKED YESTERDAY
+      <p>
+          Select an <%= f.label :organizer %>
+        <% if organizer_id.nil? %>
+          <%= f.text_field :organizer_id, list: "organizer_id" %>
+          <datalist id="organizer_id">
+            <% User.pluck(:name).uniq.each do |organizer| %>
+              <option value="<%= organizer %>"></option>
+            <% end %>
+          </datalist>
+        <% else %>  
+          <strong><%= @rehearsal.organizer.name %></strong> 
+        <% end %>
+        </p>
+
+
+          Organized by: <%= @rehearsal.organizer_id %> <%= @rehearsal.organizer.name %>
+
+
+
 THIS CODE WAS REMOVED FROM SONGNOTE NEW VIEW
 
   <%= fields_for @songnotes do |songnotes_attribute| %>
@@ -96,7 +116,7 @@ OR
 
 
 
-THIS IS SONGNOTE TEST CONTENT
+THIS IS SONGNOTE SAMPLE CONTENT
 If the yeti takes a solo, band takes a break. Stagger each instrument out (-BACK VOCALS, -KEY -GUITARS, -ANY OTHERS -BASS).
 
 THIS IS A PARTIAL FOR
