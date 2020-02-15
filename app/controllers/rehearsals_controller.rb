@@ -17,42 +17,44 @@ class RehearsalsController < ApplicationController
   # end
 
   def index
-    # @rehearsals = Rehearsal.all
-    if params[:user_rehearsal_id]
-      @user_rehearsal = Rehearsal.find_by(params[:user_rehearsal_id])
-      if @user_rehearsal.nil?
-        redirect_to rehearsals_user_rehearsals_path
-      else
-        @rehearsals = @user_rehearsals.rehearsals
-      end
-    else
-      @rehearsals = Rehearsal.all
-    end
+    @rehearsals = Rehearsal.all
+    # if params[:organizer_id]
+    #   @organizer = Rehearsal.find_by(params[:organizer_id])
+    #   if @organizer.nil?
+    #     redirect_to rehearsals_organizers_path
+    #   else
+    #     @rehearsals = @organizers.rehearsals
+    #   end
+    # else
+    #   @rehearsals = Rehearsal.all
+    # end
   end
-
+  
   def show
     @rehearsal = Rehearsal.find(params[:id])
     @rehearsal.songnotes.build
+    @rehearsal.users.build
 
+    # binding.pry
     if @rehearsal.nil?
       render :new
     end
+    
   end
-
+  
   def new
     @rehearsal = Rehearsal.new
-    10.times { @rehearsal.songnotes.build }
+    @rehearsal.songnotes.build
     @rehearsal.users.build
   end
-
+  
   def create
-    # @rehearsal =  # the foreign key is now assigned
-    # @rehearsal = Rehearsal.new(rehearsal_params) #no foreign key is assigned.
-
-    @rehearsal = current_user.rehearsals.build(rehearsal_params) # the foreign key is now assigned
+    @rehearsal = Rehearsal.new(rehearsal_params) #no foreign key is assigned.
+    
+    # @rehearsal = current_user.rehearsals.build(rehearsal_params) # the foreign key is now assigned
     @rehearsal.save
     if  @rehearsal.save
-      redirect_to @rehearsal
+      redirect_to rehearsals_path
       flash[:notice] = "Rehearsal Created"
     else
       render :new
@@ -83,6 +85,6 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time, :organizer, :organizer_name, :user_name)
+    params.require(:rehearsal).permit(organizer_attributes: [:organizer_id], :location, :city, :purpose, :date, :time)
   end
 end

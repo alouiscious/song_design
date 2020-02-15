@@ -2,7 +2,7 @@
 for <%= @rehearsal.date.strftime("%A %b %e") %> | <%= @rehearsal.time.strftime("%l %p") %></h4>
 <%= link_to "Create Song Design notes...", new_rehearsal_songnote_path(@rehearsal) %> 
 
-<%= render partial: 'rehearsal', locals: {rehearsal: @rehearsal, song: @song, songnote: @songnote} %>
+<%= render partial: 'rehearsal', locals: {organizer: @organizer, rehearsal: @rehearsal, song: @song, songnote: @songnote, user: @user} %>
 <br>
 
 

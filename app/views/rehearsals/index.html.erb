@@ -12,10 +12,8 @@
 <tr>
   <td>
     <% @rehearsals.each do |rehearsal| %>
-      <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> |  
-      <% time = rehearsal.time %>
-      <%= time.strftime("%l %p") %>   | 
-      <%= rehearsal.date.strftime("%A %b %e") %>
+      #<%= rehearsal.id %>: <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> |  
+      <%= rehearsal.time %>   |   <%= rehearsal.date %>
       <br>  
       <br>  
     <% end %>  
