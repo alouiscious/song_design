@@ -1,4 +1,4 @@
-module SongnotesHelper
+# module SongnotesHelper
   # def song_id_field(songnote)
   #   if songnote.rehearsal.nil?
   #     select_tag "songnote[song_id]", options_from_collection_for_select(Song.all, :id, :title)
@@ -14,5 +14,5 @@ module SongnotesHelper
   #     hidden_field_tag "songnote[rehearsal_id]", songnote.rehearsal_id
   #   end
   # end
-end
+# end
 

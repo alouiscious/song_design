@@ -1,4 +1,4 @@
-module RehearsalHelper
+# module RehearsalHelper
 # CREATE A FORM HELPER FORTHE DATALIST IN REHEARSALS FOR THE SONG TITLE
 # look commons and set the differences as arguments
 #  helpers/absrtactions are best justified when you have at least three of one things
@@ -27,6 +27,6 @@ module RehearsalHelper
   #     song.rehearsal.title
   #   end
   # end
-end
+# end
 
 
