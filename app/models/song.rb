@@ -17,5 +17,4 @@ class Song < ApplicationRecord
     self.try(:user).try(:name)  
   end
 
-
 end
