@@ -34,8 +34,23 @@
     <%= f.label :time %>
     <%= f.time_select(:time, {ampm: true, hours: true, minute_step: 30}) %> </p>
     <p> 
-
+        <table>
+    <td>
+      Song Design Status:
+    </td>
+    <td>
+      <%= f.radio_button(:status, "in use") %>
+      <%= f.label(:status_yes, "In Use") %>
+    </td>
+    <td>
+      <%= f.radio_button(:status, "not in use") %> 
+      <%= f.label(:status_no, "Not In Use") %>
+    </td>    
+  </table>
+  <br>
+  <br>
     </p>
+
     <p>
     <% if edit_rehearsal_path(@rehearsal) %>
       Organized by: <%= @rehearsal.organizer.name %>

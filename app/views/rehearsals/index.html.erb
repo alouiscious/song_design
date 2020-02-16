@@ -13,7 +13,9 @@
   <td>
     <% @rehearsals.each do |rehearsal| %>
       #<%= rehearsal.id %>: <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> |  
-      <%= rehearsal.time %>   |   <%= rehearsal.date %>
+      <%= (rehearsal.time).to_s %>   |   <%= rehearsal.date %>
+      
+      
       <br>  
       <br>  
     <% end %>  

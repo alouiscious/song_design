@@ -5,8 +5,8 @@
   <%= link_to @rehearsal.location, edit_rehearsal_path(rehearsal) %> | 
   <% if @rehearsal.date || @rehearsal.time%>
   <p>This rehearsal setup was not completed, please delet it and start again</p>
-    <%= @rehearsal.time.strftime("%l %p") %> | 
-    <%= @rehearsal.date.strftime("%A %b %e") %>  <br>  
+    <%= @rehearsal.time.strftime("%l %p %c") %> | 
+    <%= @rehearsal.date.strftime("%A %b %e %c") %>  <br>  
   <% end %>
   <%= @rehearsal.purpose %> <br>
   <p>
