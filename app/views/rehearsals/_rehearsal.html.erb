@@ -2,21 +2,32 @@
 
 <br>
 <br>
+  <% if @rehearsal.date || @rehearsal.time %>
   <%= link_to @rehearsal.location, edit_rehearsal_path(rehearsal) %> | 
-  <% if @rehearsal.date || @rehearsal.time%>
-  <p>This rehearsal setup was not completed, please delet it and start again</p>
     <%= @rehearsal.time.strftime("%l %p %c") %> | 
     <%= @rehearsal.date.strftime("%A %b %e %c") %>  <br>  
+  <% else %>
+    <p>This rehearsal setup was not completed, please <%= button_to "delete it" , rehearsals_path%> and start again.</p>
+
   <% end %>
-  <%= @rehearsal.purpose %> <br>
+  <ul>
+  <p>Participants:</p>
+  <li></li>
+  </ul>
   <p>
+    <%= @rehearsal.purpose %> <br>
     City: <%= @rehearsal.city %> <br>
     Organized by: <%= link_to @rehearsal.organizer.name, user_path(@rehearsal.organizer_id)%>
   </p>
+  
 <br>
 <br>
 
 
+
+
+<br>
+<br>
 
 <br>
 <br>

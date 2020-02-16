@@ -11,9 +11,27 @@
 
 <tr>
   <td>
-    <% @rehearsals.each do |rehearsal| %>
+  <h3>
+  <%= @rehearsals.future.count %> Upcoming Song Desing Sessions
+  </h3>
+    <% @rehearsals.future.each do |rehearsal| %>
       #<%= rehearsal.id %>: <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> |  
       <%= (rehearsal.time).to_s %>   |   <%= rehearsal.date %>
+      
+      
+      <br>  
+      <br>  
+    <% end %>  
+  </td>
+</tr>
+<tr>
+  <td>
+  <h3>
+  <%= @rehearsals.past.count %> Past Song Desing Sessions
+  </h3>
+    <% @rehearsals.past.each do |rehearsal| %>
+      #<%= rehearsal.id %>: <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> |  
+      <%= rehearsal.time %>   |   <%= rehearsal.date %>
       
       
       <br>  

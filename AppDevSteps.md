@@ -111,7 +111,7 @@ decide how rehearsal show view works
   shows organizer / links to organizer edits
 
 rehearsal edit view shows
-  link to edit organizer
+X  link to edit organizer
   rehearsal edit fields
   add song to RH via links to song titles
   song title links to song and songnotes

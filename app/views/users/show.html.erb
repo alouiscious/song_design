@@ -1,6 +1,6 @@
 <h1>Musician Details</h1>
 
-<%= render(@user) %>
+<%= render partial: (@user), locals: {user: @user, rehearsal: @rehearsal, organized_rehearsal: @organized_rehearsals} %>
 
   <tr>
     <H4><%=  link_to "Back to ALL Musicians", users_path %></H4>

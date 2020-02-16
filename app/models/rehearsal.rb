@@ -19,4 +19,12 @@ class Rehearsal < ApplicationRecord
   def self.by_user(organizer_id)
     where(organizer: organizer_id)
   end
+  def musician_name=(name)
+    musician = User.find_by(name: name)
+    self.musician = musician
+  end
+
+  def musician_name
+    self.try(:user).try(:name)  
+  end
 end

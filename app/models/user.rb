@@ -25,4 +25,13 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  def musician_name=(name)
+    musician = User.find_by(name: name)
+    self.musician = musician
+  end
+
+  def musician_name
+    self.try(:user).try(:name)  
+  end
 end
