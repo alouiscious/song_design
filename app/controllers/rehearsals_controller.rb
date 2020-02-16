@@ -51,7 +51,6 @@ class RehearsalsController < ApplicationController
   
   def create
     @rehearsal = Rehearsal.new(rehearsal_params) #no foreign key is assigned.
-    
     @rehearsal = current_user.organized_rehearsals.build(rehearsal_params) # the foreign key is now assigned
     @rehearsal.save
     # binding.pry

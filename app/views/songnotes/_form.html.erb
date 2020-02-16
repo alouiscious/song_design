@@ -2,16 +2,16 @@
 <div class="songnote">
 
   <%= form_for @songnote do |f| %>
-  <% if songnote.song_id.nil? %>
-    <p>Link this note to a song</p>    
-    <%= select_tag "song_id", options_from_collection_for_select(Song.all, :id, :title) %>
+  <% if @songnote.song_id.nil? %>
+    
+  <p>Link this note to a song</p>    
+    <%= select_tag "songnote[song_id]", options_from_collection_for_select(Song.all, :id, :title, params[:song_id].to_i) %>
   <% else %>
-    <%= hidden_field_tag "song_id", songnote.song_id %>
+    <%= hidden_field_tag "songnote[song_id]", songnote.song_id %>
   <% end %>
   <br><br>
   <br>
-  <br>
-  <br>
+
 
     <%= f.label 'Topic: ' %>
     <%= f.text_field :title, width: 28 %> <br><br>
@@ -38,6 +38,7 @@
   <% else %>
     <%= hidden_field_tag "songnote[rehearsal_id]", songnote.rehearsal_id %>
   <% end %>
+    <%= hidden_field_tag "songnote[user_id]", current_user.id%>
   <br><br>
   <br><br>   
   <%= f.submit %> 

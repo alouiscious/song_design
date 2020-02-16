@@ -1,0 +1,12 @@
+<h1>All Song Design Notes</h1>
+<% @songnotes.each do |songnote| %>
+  <%= songnote.title %> from:
+  <%= link_to songnote.organized_rehearsals.title, rehearsal_path(@songnote.organized_rehearsals) if @songnote.organized_rehearsals %> (<%= link_to "Edit Songnote", edit_organized_rehearsal_songnote_path(@songnote.organized_rehearsals, @songnote) if @songnote.organized_rehearsals %> <br>
+
+
+  <%= songnote.content %> <br>
+  <%= songnote.category %> <br>
+<% end %>  
+
+
+

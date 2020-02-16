@@ -5,18 +5,17 @@
     <thead></thead>
     <tbody style="display=block">
     <p>
-    <%= f.label :location %>
-    <%= f.text_field :location, list: "location" %>
-    <datalist id="location">
-      <% Rehearsal.pluck(:location).uniq.each do |location_list| %>
-        <option value="<%= location_list %>"></option>
-      <% end %>
-    </datalist>
+      <%= f.label :location %>
+      <%= f.text_field :location, list: "location" %>
+      <datalist id="location">
+        <% Rehearsal.pluck(:location).uniq.each do |location_list| %>
+          <option value="<%= location_list %>"></option>
+        <% end %>
+      </datalist>
     </p>
     <p>
-    
-    <%= f.label :city %>
-    <%= f.text_field :city %> </p>
+      <%= f.label :city %>
+      <%= f.text_field :city %> </p>
     <p>
     
     <%= f.label :purpose %>

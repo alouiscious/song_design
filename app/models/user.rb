@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :songs_to_rehearse, through: :rehearsals, source: :song
   
 
-  # validates :email, uniqueness: true
+  validates :email, uniqueness: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
