@@ -92,3 +92,36 @@ add fields_for :children to the parent model form view. Inside of the fields for
 Controllers
 make sure that you whitelist the fields_for in strong params using
 params.require(:parent).permit(children_attributes: [:first_field_name, :second_field_name, :third_field_name])
+
+
+
+TODO LIST
+fix songnote creation
+fix linking a song to a song note 
+fix linking a note to a rehearsal
+fix note category and song in-use options
+
+show attached songnotes in song view
+decide how rehearsal show view works
+  shows songs assign to a rehearsal
+  show notes link to each song
+  shows options to create a song note
+  links to rehearsal edit view
+  links back to ALL rehearsals
+  shows organizer / links to organizer edits
+
+rehearsal edit view shows
+  link to edit organizer
+  rehearsal edit fields
+  add song to RH via links to song titles
+  song title links to song and songnotes
+  delete songs linked to rehearsal
+  add a songnote to any song
+  FIX - remove song note detail
+  reformat rehearsal organizer details
+
+  musisican show page
+  show if musician is active/rehearsing
+  show list of assigned rehearsals
+  assigned rehearsals link to that rehearsals show page
+
