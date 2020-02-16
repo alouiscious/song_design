@@ -1,87 +1,90 @@
 
 <div class=rehearsal>
   <%= form_for @rehearsal do |f| %>
-
   <table>
     <thead></thead>
-
     <tbody style="display=block">
+    <p>
+    <%= f.label :location %>
+    <%= f.text_field :location, list: "location" %>
+    <datalist id="location">
+      <% Rehearsal.pluck(:location).uniq.each do |location_list| %>
+        <option value="<%= location_list %>"></option>
+      <% end %>
+    </datalist>
+    </p>
+    <p>
+    
+    <%= f.label :city %>
+    <%= f.text_field :city %> </p>
+    <p>
+    
+    <%= f.label :purpose %>
+    <%= f.text_field :purpose, list: "purpose" %>
+    <datalist id="purpose">
+    <% Rehearsal.pluck(:purpose).uniq.each do |purpose| %>
+      <option value="<%= purpose %>"></option>
+    <% end %>
+    </datalist>
+    </p>
+    <p>
+    
+    <%= f.label :date %>
+    <%= f.date_select(:date, start_year: 2019) %> </p>
+    <p>  
+    <%= f.label :time %>
+    <%= f.time_select(:time, {ampm: true, hours: true, minute_step: 30}) %> </p>
+    <p> 
+
+    </p>
+    <p>
+    <% if edit_rehearsal_path(@rehearsal) %>
+      Organized by: <%= @rehearsal.organizer.name %>
+    <% end %>
+    </p>        
+    <p>
+    <strong>Song avails for this rehearsal</strong>
+    </p>
+
+    </tr>
+
+    <p>
+    <%=  %>
+    <tr>
+    <h4>Add a rehearsal song design note</h4>
+    <%= fields_for @songnotes do |songnote_attributes| %>
       <p>
-      <strong>Set up your rehearsal</strong> 
-      </p>
-
-        <p>
-
-        <%= f.label :location %>
-        <%= f.text_field :location, list: "location" %>
-        <datalist id="location">
-          <% Rehearsal.pluck(:location).uniq.each do |location_list| %>
-            <option value="<%= location_list %>"></option>
+        <%= songnote_attributes.label :song_title %>
+        <%= songnote_attributes.text_field :song_title, list: "song_titles" %> 
+        <datalist id="song_titles">
+          <% Song.pluck(:title).uniq.each do |song_title| %>
+            <option value="<%= song_title %>"></option>
           <% end %>
         </datalist>
-        </p>
-        <p>
-        
-        <%= f.label :city %>
-        <%= f.text_field :city %> </p>
-        <p>
-        
-        <%= f.label :purpose %>
-        <%= f.text_field :purpose, list: "purpose" %>
-        <datalist id="purpose">
-        <% Rehearsal.pluck(:purpose).uniq.each do |purpose| %>
-          <option value="<%= purpose %>"></option>
-        <% end %>
-        </datalist>
-        </p>
-        <p>
-        
-        <%= f.label :date %>
-        <%= f.date_select(:date, start_year: 2019) %> </p>
-        <p>  
-        <%= f.label :time %>
-        <%= f.time_select(:time, {ampm: true, hours: true, minute_step: 30}) %> </p>
-        <p> 
-        </p>
-        <p>
+      </p>
+    
+      <p>
 
-        <strong>Song avails for this rehearsal</strong>
+      <%= songnote_attributes.label :title %>
+      <%= songnote_attributes.text_field :title %>
+      </p>
+      <p>
+      <%= songnote_attributes.label :content %>
+      <%= songnote_attributes.text_area :content %>
+      </p>
+      <p>
+      <%= songnote_attributes.radio_button(:category, "feature_solo") %>
+      <%= songnote_attributes.label(:category_feature, "Feature/Solo") %>
 
-        </p>
-        <p>
-        <%= fields_for @songs do |songs_attributes| %>
-          <%= songs_attributes.collection_check_boxes(:status, Song.all, :id, :title) %> 
-        <% end %>
-        </p>
-        <p>
-        </tr>
+      <%= songnote_attributes.radio_button(:category, "design") %> 
+      <%= songnote_attributes.label(:category_design, "Design/Structure") %>       
+      </p>
 
-        </p>
-        <p>
-        <tr>
-        <h4>Add a rehearsal song design note</h4>
-        <%= fields_for @songnotes do |songnote_attributes| %>
-          <p>
-          <%= songnote_attributes.label :title %>
-          <%= songnote_attributes.text_field :title %>
-          </p>
-          <p>
-          <%= songnote_attributes.label :content %>
-          <%= songnote_attributes.text_area :content %>
-          </p>
-          <p>
-          <%= songnote_attributes.radio_button(:category, "feature_solo") %>
-          <%= songnote_attributes.label(:category_feature, "Feature/Solo") %>
-
-          <%= songnote_attributes.radio_button(:category, "design") %> 
-          <%= songnote_attributes.label(:category_design, "Design/Structure") %>       
-          </p>
-
-       <% end %>          
-        </tr>
-        <tr>
-        <%= f.submit %> 
-        </tr>
+    <% end %>          
+    </tr>
+    <tr>
+    <%= f.submit %> 
+    </tr>
         </tbody>
     </table>
   <% end %> 

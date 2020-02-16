@@ -2,11 +2,17 @@
 
 <br>
 <br>
-  <%= link_to @rehearsal.location, rehearsal_path(rehearsal) %> | 
-  <%= @rehearsal.time.strftime("%l %p") %> | 
-  <%= @rehearsal.date.strftime("%A %b %e") %>  <br>  
+  <%= link_to @rehearsal.location, edit_rehearsal_path(rehearsal) %> | 
+  <% if @rehearsal.date || @rehearsal.time%>
+  <p>This rehearsal setup was not completed, please delet it and start again</p>
+    <%= @rehearsal.time.strftime("%l %p") %> | 
+    <%= @rehearsal.date.strftime("%A %b %e") %>  <br>  
+  <% end %>
   <%= @rehearsal.purpose %> <br>
-  <%= @rehearsal.city %> <br>
+  <p>
+    City: <%= @rehearsal.city %> <br>
+    Organized by: <%= link_to @rehearsal.organizer.name, user_path(@rehearsal.organizer_id)%>
+  </p>
 <br>
 <br>
 

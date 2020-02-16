@@ -17,17 +17,18 @@ class RehearsalsController < ApplicationController
   # end
 
   def index
-    @rehearsals = Rehearsal.all
-    # if params[:organizer_id]
-    #   @organizer = Rehearsal.find_by(params[:organizer_id])
-    #   if @organizer.nil?
-    #     redirect_to rehearsals_organizers_path
-    #   else
-    #     @rehearsals = @organizers.rehearsals
-    #   end
-    # else
-    #   @rehearsals = Rehearsal.all
-    # end
+    # @rehearsals = Rehearsal.all
+    if params[:organizer_id]
+      @organizer = Rehearsal.find_by(params[:organizer_id])
+      if @organizer.nil?
+        redirect_to rehearsals_organizers_path
+      else
+        @rehearsals = @organizers.rehearsals
+      end
+    else
+      @rehearsals = Rehearsal.all
+    end
+    # binding.pry
   end
   
   def show
@@ -51,9 +52,11 @@ class RehearsalsController < ApplicationController
   def create
     @rehearsal = Rehearsal.new(rehearsal_params) #no foreign key is assigned.
     
-    # @rehearsal = current_user.rehearsals.build(rehearsal_params) # the foreign key is now assigned
+    @rehearsal = current_user.organized_rehearsals.build(rehearsal_params) # the foreign key is now assigned
     @rehearsal.save
-    if  @rehearsal.save
+    # binding.pry
+
+    if @rehearsal.save
       redirect_to rehearsals_path
       flash[:notice] = "Rehearsal Created"
     else
@@ -85,6 +88,6 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(organizer_attributes: [:organizer_id], :location, :city, :purpose, :date, :time)
+    params.require(:rehearsal).permit(:location, :city, :purpose, :date, :time, :organizer_id, songnotes_attributes: [:song_title, :title, :content, :category, :user_id, :rehearsal_id, :song_id])
   end
 end

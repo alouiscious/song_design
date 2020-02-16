@@ -6,35 +6,17 @@ class Rehearsal < ApplicationRecord
 	belongs_to :organizer, class_name: 'User', optional: true, foreign_key: :organizer_id
 	
 	accepts_nested_attributes_for :user_rehearsals, :reject_if => proc { |attrs| attrs[:user_id].blank? } 
-	# accepts_nested_attributes_for :songs, :reject_if => proc { |attrs| attrs[:title].blank? }
 	accepts_nested_attributes_for :songnotes, :reject_if => proc { |attrs| attrs[:title].blank? }
-	# accepts_nested_attributes_for :users, :reject_if => proc { |attrs| attrs[:name].blank? }
-	accepts_nested_attributes_for :organizer, :reject_if => proc { |attrs| attrs[:name].blank? }
 
-  # def song_attributes=(song)
-  #   self.song = Song.find_or_create_by(title: song[:title])
-  #   self.song.update(song)
-  # end
-  
-  # def user_rehearsal_ids=(ids)
-  #   ids.each do |id|
-  #     user_rehearsal = User_Rehearsal.find(id)
-  #     self.user_rehearsals << user_rehearsal
-  #   end
-  # end
-
-  # def user_rehearsal_ids
-  #   self.try(:user_rehearsal).try(:ids)
-	# end
-	
-	def songnote_ids=(ids)
-    ids.each do |id|
-      songnote = Songnote.find(id)
-      self.songnotes << songnote
-    end
+  def self.future
+    where("date >=?", Time.zone.today.beginning_of_day)
   end
 
-  def songnote_ids
-    self.try(:songnote).try(:ids)
+  def self.past
+    where("date <?", Time.zone.today.beginning_of_day)
+  end
+
+  def self.by_user(organizer_id)
+    where(organizer: organizer_id)
   end
 end
