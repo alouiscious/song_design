@@ -29,41 +29,22 @@
     <p>
     
     <%= f.label :date %>
-    <%= f.date_select(:date, start_year: 2019) %> </p>
+    <%= f.date_select(:date, start_year: 2019) %> 
+    </p>
     <p>  
     <%= f.label :time %>
-    <%= f.time_select(:time, {ampm: true, hours: true, minute_step: 30}) %> </p>
-    <p> 
-        <table>
-    <td>
-      Song Design Status:
-    </td>
-    <td>
-      <%= f.radio_button(:status, "in use") %>
-      <%= f.label(:status_yes, "In Use") %>
-    </td>
-    <td>
-      <%= f.radio_button(:status, "not in use") %> 
-      <%= f.label(:status_no, "Not In Use") %>
-    </td>    
-  </table>
-  <br>
-  <br>
+    <%= f.time_select(:time, {ampm: true, hours: true, minute_step: 30}) %> 
     </p>
 
+
+
     <p>
-    <% if edit_rehearsal_path(@rehearsal) %>
+    <% if edit_rehearsal_path(f) == true %>
       Organized by: <%= @rehearsal.organizer.name %>
     <% end %>
     </p>        
-    <p>
-    <strong>Song avails for this rehearsal</strong>
-    </p>
-
     </tr>
 
-    <p>
-    <%=  %>
     <tr>
     <h4>Add a rehearsal song design note</h4>
     <%= fields_for @songnotes do |songnote_attributes| %>
@@ -76,15 +57,13 @@
           <% end %>
         </datalist>
       </p>
-    
       <p>
-
       <%= songnote_attributes.label :title %>
       <%= songnote_attributes.text_field :title %>
       </p>
       <p>
       <%= songnote_attributes.label :content %>
-      <%= songnote_attributes.text_area :content %>
+      <%= songnote_attributes.text_area :content, rows: 7, cols: 28 %>
       </p>
       <p>
       <%= songnote_attributes.radio_button(:category, "feature_solo") %>
@@ -96,18 +75,31 @@
 
     <% end %>          
     </tr>
+      <table>
+    <td>
+      Song Design Status:
+    </td>
+    <%= fields_for @song do |songs_attributes| %>
+    <td>
+      <%= songs_attributes.radio_button(:status, "true") %>
+      <%= songs_attributes.label(:status_yes, "In Use") %>
+    </td>
+    <td>
+      <%= songs_attributes.radio_button(:status, "false") %> 
+      <%= songs_attributes.label(:status_no, "Not In Use") %>
+    </td>  
+    <% end %>
+  </table>
+  <br>
+  <br>
     <tr>
     <%= f.submit %> 
     </tr>
         </tbody>
-    </table>
+  </table>
   <% end %> 
 </div>
-  
 
-
-</p>
-<p>
-</p>
 <p>
 <%= link_to "Go to ALL Rehearsals", rehearsals_path %>
+</p>

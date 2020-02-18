@@ -16,7 +16,7 @@
   </h3>
     <% @rehearsals.future.each do |rehearsal| %>
       #<%= rehearsal.id %>: <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> |  
-      <%= (rehearsal.time).to_s %>   |   <%= rehearsal.date %>
+      <%= rehearsal.time.strftime("%l %p") %>   |   <%= rehearsal.date.strftime("%A %b %e") %>
       
       
       <br>  
@@ -31,7 +31,7 @@
   </h3>
     <% @rehearsals.past.each do |rehearsal| %>
       #<%= rehearsal.id %>: <%= link_to rehearsal.location, rehearsal_path(rehearsal) %> |  
-      <%= rehearsal.time %>   |   <%= rehearsal.date %>
+      <%= rehearsal.time.strftime("%l %p") %>   |   <%= rehearsal.date.strftime("%A %b %e") %>
       
       
       <br>  
