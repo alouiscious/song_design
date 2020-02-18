@@ -12,15 +12,23 @@
   #   song.rehearsal.nil? ? link_to("Add Rehearsal", edit_song_path(song)) : link_to(song.rehearsal_title, rehearsal_path(song.rehearsal))
   # end
 
-  # # Display dropdown of rehearsals, with title if editing through nested
-  # def rehearsal_select(song, path)
-  #   if song.rehearsal && path == "nested"
-  #     hidden_field_tag "song[rehearsal_id]", song.rehearsal_id
-  #   else
-  #     select_tag "song[rehearsal_id]", options_from_collection_for_select(Rehearsal.all, :id, :title)
-  #   end
-  # end
+  # Display dropdown of rehearsals, with title if editing through nested
+  def rehearsal_select(song, path)
+    if song.rehearsal && path == "nested"
+      hidden_field_tag "song[rehearsal_id]", song.rehearsal_id
+    else
+      select_tag "song[rehearsal_id]", options_from_collection_for_select(Rehearsal.all, :id, :title)
+    end
+  end
 
+#   Display dropdown of musician, with title if editing through nested
+#  def musician_select(user, path)
+#    if user.rehearsal && path == "nested"
+#      hidden_field_tag "user[rehearsal_id]", user.rehearsal_id
+#    else
+#      select_tag "user[rehearsal_id]", options_from_collection_for_select(User.all, :id, :name)
+#    end
+#  end
   # # Display title if editing through nested
   # def display_title(song, path)
   #   if song.rehearsal && path == "nested"
