@@ -1,10 +1,13 @@
 <h1>All Song Design Notes</h1>
 
 <div class="songnotes">
+
     <% @songnotes.each do |songnote| %>
   <ul>  
+    <li><%= songnote.song_title %></li>
+    <%= songnote.song_title %>
+      <% @song_title %>
     <li>Title: <%= songnote.title %> from: 
-      <%= songnote.song_title %>
       <%= songnote.category %> note:
       <%= songnote.content %> <br>
     </li>
@@ -12,7 +15,7 @@
 </div>
 
 <div class="button">
-  <%= button_to "Edit Note", songnote, method: :patch %>
+<button><%= link_to "Edit Note", rehearsals_path(@rehearsal_id) %></button>
 
   <%= button_to "Delete Note", songnote, method: :delete, data: { confirm: "Really? Sure?" } %>
 

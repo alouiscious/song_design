@@ -1,13 +1,29 @@
 
-
-<h1>Song Notes</h1>
-  <%= @songnote.title %> from:
-  <%= link_to @songnote.rehearsal.title, rehearsal_path(@songnote.rehearsal) if @songnote.rehearsal %> (<%= link_to "Edit Songnote", edit_rehearsal_songnote_path(@songnote.rehearsal, @songnote) if @songnote.rehearsal %> <br>
+<% if @songnote.rehearsal_id %>
+<h5>
+The following song design note(s) is linked to the:
+</h5>
+<%= @songnote.rehearsal.date.strftime("%A %b %e") %> at the <%= @songnote.rehearsal.time.strftime("%l %p") %> rehearsal at 
+<br>
+<%= link_to @songnote.rehearsal.location, rehearsal_path(@songnote.rehearsal) %> 
+ <br>
+<% end %>
+<br>
+<strong>
+   for: <%= link_to @songnote.song_title, rehearsal_path(@songnote.rehearsal) if @songnote.rehearsal %> <br>
+  <ul>
+  <li>
+  <%= @songnote.title %> <br>
+  </li>
+  </ul>
+</strong>
   <%= @songnote.content %> <br>
   <%= @songnote.category %> <br>
+  <br>
+
+  <button><%= link_to "Add Song Notes", new_songnote_path(@song) %></button> |
+
+<button><%= link_to "Edit Songnote", edit_rehearsal_songnote_path(@songnote.rehearsal, @songnote) if @songnote.rehearsal %></button> 
+<br> 
 <br>
-<br>
-<%= @songnote.rehearsal_id %>
-<%= @songnote.user_id %>
-<%= @songnote.song_id %>
 

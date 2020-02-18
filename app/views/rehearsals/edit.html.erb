@@ -1,15 +1,6 @@
 <h1>Edit a Rehearsal</h1>
 <%= render partial: 'form', locals: { rehearsal: @rehearsal, song: @song, songnote: @songnote} %>
 <br>
-<br>
-<p>Songnotes:</p>
-<%= @rehearsal.songnotes.each do |note| %> 
-  <% if @songnote_id.nil? %>
-    <p>No notes yet.</p>
-  <% else %>
-      <%=  link_to note.title, edit_songnote_path(:id) %>
 
-  <% end %>
-<% end %>
 <br>
 <%= link_to "All Rehearsals", rehearsals_path %>
