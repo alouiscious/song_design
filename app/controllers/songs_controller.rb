@@ -33,36 +33,37 @@ class SongsController < ApplicationController
   end
 
   def show
-    @song = Song.find(params[:id])
+    @song = Song.find_by(id: params[:id])
     if @song.nil?
       render :new
     end
   end
-
+  
   def new
     @song = Song.new
     @song.songnotes.build
   end
-
+  
   def create
     # rehearsal = Rehearsal.find_or_create_by(rehearsal_id: song_params[:title])
     @song = rehearsal.song.build(song_params)
     @song = Song.new(rehearsal_id: params[:rehearsal_id], songnote_id: params[:songnote_id])
     @song.save
-
+    
     if @song.save
       flash[:notice] = "Song Added"
       redirect_to songs_path
     else
       flash[:notice] = "Song NOT Added"
       render :new
-
+      
     end
   end
-
+  
   def edit
     @song = Song.find(params[:id])
     @song.songnotes.build
+    # binding.pry
 
   end
 
