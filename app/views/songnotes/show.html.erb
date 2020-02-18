@@ -1,2 +1,4 @@
+<h1>Song Note Details</h1>
+
+
 <%= render partial: 'songnote', locals: { songnote: @songnote, rehearsal: @rehearsal, song: @song } %>
-<%= button_to "Delete Note", songnote_path(@songnote), method: :delete, data: { confirm: "Really? Sure?" } %>
