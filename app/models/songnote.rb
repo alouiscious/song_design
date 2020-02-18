@@ -10,17 +10,21 @@ class Songnote < ApplicationRecord
 	# TODO -  ADD select options for songnote: :category   
 	# <!-- # <%= content.select_tag(:category, options_for_select([['Solo/Feature', 1],['Organizer Note', 2],['Design Note', 3]]) %> -->
 	
+	
 	def song_title=(title)
 		self.song = Song.find_or_create_by(title: title)
 		self.song.update(song)
 	end
-
+	
 	def song_title
 		self.song ? self.song.title : nil
 		# self.try(:song).try(:title)
 	end
-
-
+	
+	# def self.by_song(song_id)
+	# 	where(song_title: song_title)
+	# end
+	
 	
 	private
 	def is_title_case

@@ -2,6 +2,21 @@ class UsersController < ApplicationController
   
   before_action :authenticate_user!
 
+  
+  # def user_rehearsal_index
+  #   @user = User.find(params[:id])
+  #   @user_rehearsal = @user.user_rehearsal
+  #   render template: 'user_rehearsal/index'
+  # end
+  
+  # def user_rehearsal
+  #   @user = User.find(params[:id]) 
+  #   # Because ids are unique by table, we can go directly to using
+  #   # Rehearsal.find (no need for @rehearsal.user_rehearsal.find).
+  #   @user_rehearsal = User_Rehearsal.find(params[:user_rehearsal_id])
+  #   render template: 'user_rehearsal/show'
+  # end
+  
   def index
     if params[:songnote_id]
       @songnote = User.find_by(params[:songnote_id])

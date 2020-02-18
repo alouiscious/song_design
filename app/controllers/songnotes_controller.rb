@@ -9,8 +9,11 @@ class SongnotesController < ApplicationController
   end
 
   def show
-    @songnote = Songnote.find_by(rehearsal_id: params[:rehearsal_id], song_id: params[:song_id])
-    @organized_rehearsal.songnotes.build
+    @songnote = Songnote.find(params[:id])
+    # @songnote = Songnote.find_by(rehearsal_id: params[:rehearsal_id], song_id: params[:song_id])
+    # @rehearsal.songnotes.build
+    # @rehearsal.users.build
+        # sounds like exodus in the style of bob marley
   end
 
   def new
@@ -21,7 +24,6 @@ class SongnotesController < ApplicationController
       # @songnote = Songnote.new(rehearsal_id: params[:rehearsal_id])
       # @songnote = Songnote.new(rehearsal_id: params[:rehearsal_id], song_id: params[:song_id], organizer_id: params[:organizer_id])
       # @songnote.songs.build
-      # @song.songnotes.build
       # @user.songnotes.build
     end
 
@@ -38,18 +40,16 @@ class SongnotesController < ApplicationController
       flash[:notice] = "Songnote NOT created!"
       render :new 
     end
-    # binding.pry
   end
   
   def edit
+
     if params[:rehearsal_id]
       rehearsal = Rehearsal.find_by(id: params[:rehearsal_id])
-      if rehearsal.nil?
-        redirect_to rehearsals_path, alert: "Rehearsal not found."
-      else
-        @songnote = rehearsal.songnotes.find_by(id: params[:id])
-        redirect_to rehearsal_songnotes_path(rehearsal), alert: "Songnote not found." if @songnote.nil?
-      end
+      nil_check(rehearsal)
+      @songnote = rehearsal.songnotes.find_by(id: params[:id])
+      redirect_to rehearsal_songnotes_path(rehearsal), alert: "Songnote not found." if @songnote.nil?
+
     else
       @songnote = Songnote.find_by(params[:id])
     end
@@ -72,9 +72,15 @@ class SongnotesController < ApplicationController
   end
 
   private
+  def nil_check(rehearsal)
+    if rehearsal.nil?
+      redirect_to rehearsals_path, alert: "Rehearsal not found."
+    end
+  end
+
 
   def songnote_params
-    params.require(:songnote).permit(:title, :content, :category, :rehearsal_id, :song_id, :user_id)
+    params.require(:songnote).permit(:song_title, :title, :content, :category, :rehearsal_id, :song_id, :user_id)
 
   end  
 end

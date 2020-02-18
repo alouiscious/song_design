@@ -2,19 +2,6 @@ class RehearsalsController < ApplicationController
 
   before_action :authenticate_user!
 
-  # def user_rehearsal_index
-  #   @rehearsal = Rehearsal.find(params[:id])
-  #   @user_rehearsal = @rehearsal.user_rehearsal
-  #   render template: 'user_rehearsal/index'
-  # end
-  
-  # def user_rehearsal
-  #   @rehearsal = Rehearsal.find(params[:id]) 
-  #   # Because ids are unique by table, we can go directly to using
-  #   # Rehearsal.find (no need for @rehearsal.user_rehearsal.find).
-  #   @user_rehearsal = User_Rehearsal.find(params[:user_rehearsal_id])
-  #   render template: 'user_rehearsal/show'
-  # end
 
   def index
     # @rehearsals = Rehearsal.all
