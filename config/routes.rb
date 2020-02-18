@@ -9,13 +9,15 @@ Rails.application.routes.draw do
 
   resources :rehearsals do [:index, :show, :new, :create, :edit, :update, :delete]
     resources :songnotes, only: [:index, :show, :new, :create, :edit, :update, :delete]
+    resources :user_rehearsals, only: [:index, :show, :new, :create, :edit, :update]
   end 
-
+  
   resources :songs do
     resources :songnotes, only: [:index, :show, :new, :create, :edit, :update]
   end
   
   resources :users do
+    resources :user_rehearsals, only: [:index, :show, :new, :create, :edit, :update]
     resources :songnotes, only: [:index, :show, :new, :create, :edit, :update]
   end
   
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
   resources :users
   resources :songs
   resources :songnotes
-  resources :user_rehearsals
+  resources :user_rehearsals, only: [:index, :show, :new, :create, :edit, :update]
 
   get 'rehearsals/index'
   root to: 'rehearsals#index'

@@ -1,35 +1,26 @@
-
-
 <br>
 <br>
   <% if @rehearsal.date || @rehearsal.time %>
   <%= link_to @rehearsal.location, edit_rehearsal_path(rehearsal) %> | 
-    <%= @rehearsal.time.strftime("%l %p %c") %> | 
-    <%= @rehearsal.date.strftime("%A %b %e %c") %>  <br>  
+    <%= @rehearsal.time.strftime("%l %p") %> | 
+    <%= @rehearsal.date.strftime("%A %b %e") %>  <br>  
   <% else %>
     <p>This rehearsal setup was not completed, please <%= button_to "delete it" , rehearsals_path%> and start again.</p>
-
   <% end %>
-  <ul>
-  <p>Participants:</p>
-  <li></li>
-  </ul>
   <p>
     <%= @rehearsal.purpose %> <br>
     City: <%= @rehearsal.city %> <br>
-    Organized by: <%= link_to @rehearsal.organizer.name, user_path(@rehearsal.organizer_id)%>
+    Organized by: <%= link_to @rehearsal.organizer.name, user_user_rehearsals_path(@rehearsal.organizer_id)%>
   </p>
-  
+
+<h3>Songnotes: (<%= @rehearsal.songnotes.count %>)</h3>
 <br>
-<br>
+  <%= @rehearsal.songnotes.each do |note| %> 
+    <%= link_to note.title, edit_songnote_path(@rehearsal) %>
+    <br>
+  <% end %>
 
 
-
-
 <br>
 <br>
-
-<br>
-<br>
-<%= link_to "Back to ALL Rehearsals", rehearsals_path %>
 

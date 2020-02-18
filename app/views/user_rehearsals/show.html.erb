@@ -1,1 +1,1 @@
-<%= render(@users) || "There's no users list available." %>
+<%= render partial: 'user_rehearsal', locals: { user_rehearsal: @user_rehearsal, user: @user, rehearsal: @rehearsal } %>

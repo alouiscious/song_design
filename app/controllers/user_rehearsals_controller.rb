@@ -2,24 +2,25 @@ class UserRehearsalsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    if params[:rehearsal_id]
-      @rehearsal = Rehearsal.find_by(id: params[:rehearsal_id])
-      if @rehearsal.nil?
-        redirect_to rehearsal_path, alert: "Rehearsal not found"
+    if params[:user_id]
+      @user_rehearsals = User.find(params[:user_id]).user_rehearsals
+      if @user_rehearsal.nil?
+        redirect_to users_path(@user), alert: "Your rehearsal not found"
       else
-        @user_rehearsals = @rehearsal.user_rehearsals
+        @user_rehearsals = UserRehearsal.all
+        # @user_rehearsals = @user.user_rehearsals
       end
-    else
-      @user_rehearsals = UserRehearsal.all
+      
     end
   end
-
+  
   def show
-    if params[:rehearsal_id]
-      @rehearsal = Rehearsal.find_by(id: params[:rehearsal_id])
-      @user_rehearsal = @rehearsal.user_rehearsals.find_by(id: params[:id])
+    if params[:user_id]
+      @user = User.find_by(id: params[:user_id])
+      @user_rehearsal = @user.user_rehearsals.find_by(id: params[:id])
       if @user_rehearsal.nil?
-        redirect_to rehearsal_user_rehearsals_path(@rehearsal), alert: "User's rehearsal not found"
+        # binding.pry
+        redirect_to user_user_rehearsals_path(user), alert: "User's rehearsal not found"
       end
     else    
       @user_rehearsal = UserRehearsal.find(params[:id])

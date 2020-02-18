@@ -1,2 +1,35 @@
-<h1>User's Rehearsals</h1>
-<%= render(@user_rehearsal) || "There's no users list available." %>
+
+<table>
+  <th>
+    <ul>
+      <li><%= user_rehearsal.user.name %> </li>
+  </th>
+  <tr>
+      <%= user.city %> <br>
+      <%= user.email %> <br>
+      <%= user.phone %> <br>
+      <%= user.instrument %>
+    <br>
+    <br>
+    <li><%= rehearsal.location %></li>
+    <ol>
+    <% rehearsal.songs.each do |song| %>
+      <li><%= song.title %> </li><br>
+          <%= song.genre %> <br>
+          <%= song.key %> <br>
+          <%= song.in_style_of %> <br>
+          In design: <%= song.status %> <br>
+      <% end %>
+    </ol>
+    </ul>
+</tr>
+
+  <th>
+  
+  </th>
+<tr>
+ <br>
+</tr>   
+</table>
+
+<%= render partial: (@user_rehearsal), locals: {user_rehearsal: @user_rehearsal, user: @user, rehearsal: @rehearsal, } %>
